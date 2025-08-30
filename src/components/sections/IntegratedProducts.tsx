@@ -29,6 +29,7 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
         "Smart E-Signature Placement – AI places e-signature boxes automatically.",
         "Instant Client Portal Uploads – Returns delivered in under 4 minutes.",
         "Paperless & Efficient – Eliminate printing, reduce costs, and boost team productivity.",
+        "Estimated & Current Tax Return",
       ],
       benefit:
         "➡️ Automate delivery from payment to e-signature—fast, secure, and client-friendly.",
