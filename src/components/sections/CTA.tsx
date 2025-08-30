@@ -21,7 +21,7 @@ const CTA: React.FC<{ id?: string }> = ({ id }) => {
         {/* Subtext */}
         <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
           From intake to delivery, TaxPilot eliminates tedious tasks while
-          keeping your client data safe with industry-leading security.
+          keeping your client data safe with industry-leading security...
         </p>
 
         {/* CTA Buttons */}
