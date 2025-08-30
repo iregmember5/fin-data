@@ -4,7 +4,7 @@ name: Deploy React Frontend
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -51,7 +51,7 @@ jobs:
 
       - name: Deploy to Apache Server
         run: |
-          scp -i ~/.ssh/id_rsa -r dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/yar-react
+          scp -i ~/.ssh/id_rsa -r dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/fin-data
 
       - name: Restart Apache
         run: |
