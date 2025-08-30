@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FileText, Send, Database } from "lucide-react";
 
 const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
-  const [activeTab, setActiveTab] = useState("Assemble");
+  const [activeTab, setActiveTab] = useState<keyof typeof products>("Assemble");
 
   const products = {
     Assemble: {
@@ -57,7 +57,7 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
     },
   };
 
-  const currentProduct = products[activeTab];
+  const currentProduct = products[activeTab as keyof typeof products];
 
   // Cracked mirror SVG pattern
   const CrackedMirrorPattern = () => (
@@ -185,7 +185,7 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
               return (
                 <button
                   key={product}
-                  onClick={() => setActiveTab(product)}
+                  onClick={() => setActiveTab(product as keyof typeof products)}
                   className={`group relative px-6 py-3 rounded-xl font-semibold text-base transition-all duration-500 transform hover:scale-105 ${
                     isActive
                       ? "bg-white/10 backdrop-blur-md text-white shadow-xl border border-white/20"
@@ -194,11 +194,11 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
                 >
                   {isActive && (
                     <div
-                      className={`absolute inset-0 rounded-xl bg-gradient-to-r ${products[product].gradient} opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-300`}
+                      className={`absolute inset-0 rounded-xl bg-gradient-to-r ${products[product as keyof typeof products].gradient} opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-300`}
                     ></div>
                   )}
                   <span className="relative z-10 flex items-center gap-2">
-                    {products[product].icon}
+                    {products[product as keyof typeof products].icon}
                     {product}
                   </span>
                 </button>
@@ -241,7 +241,7 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
 
                 {/* Features Grid */}
                 <div className="grid gap-4 mb-6">
-                  {currentProduct.features.map((feature, idx) => (
+                  {currentProduct.features.map((feature: string, idx: number) => (
                     <div
                       key={idx}
                       className="group flex items-start gap-3 p-3 rounded-lg bg-slate-800/40 backdrop-blur-sm border border-slate-700/30 hover:bg-slate-800/60 transition-all"

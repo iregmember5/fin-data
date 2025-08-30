@@ -17,9 +17,9 @@ const Home: React.FC = () => {
       <Hero isDark={isDark} id="hero" />
       <SecondSection id="second" />
       <ProcessSection id="process" />
-      <IntegratedProducts isDark={isDark} id="products" />
-      <Security isDark={isDark} id="security" />
-      <CTA isDark={isDark} id="cta" />
+      <IntegratedProducts id="products" />
+      <Security id="security" />
+      <CTA id="cta" />
 
       <Footer isDark={isDark} />
     </>

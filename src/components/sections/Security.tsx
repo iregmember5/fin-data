@@ -7,7 +7,7 @@ const Security: React.FC<{ id?: string }> = ({ id }) => {
       id={id}
       className="flex justify-center items-center py-16 px-6 hex-background"
     >
-      <style jsx>{`
+      <style>{`
         .hex-background {
           background-color: #0f172a;
           background-image: linear-gradient(

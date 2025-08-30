@@ -122,7 +122,7 @@ const ProcessSection: React.FC<{ id?: string }> = ({ id }) => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in {
           from {
             opacity: 0;
