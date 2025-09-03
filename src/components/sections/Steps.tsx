@@ -146,7 +146,7 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
         className={`absolute inset-0 [background-size:24px_24px] ${
           isDark
             ? "bg-black/80 bg-[radial-gradient(circle,_rgba(255,255,255,0.06)_1px,_transparent_1px)]"
-            : "bg-gradient-to-br from-blue-50/30 via-purple-50/30 to-cyan-50/30 bg-[radial-gradient(circle,_rgba(200,200,255,0.1)_1px,_transparent_1px)]"
+            : " from-blue-50/30 via-purple-50/30 to-cyan-50/30 bg-[radial-gradient(circle,_rgba(200,200,255,0.1)_1px,_transparent_1px)]"
         }`}
       ></div>
 
@@ -246,38 +246,6 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out;
-        }
-
-        .animate-slide-up {
-          opacity: 0;
-          animation: slide-up 0.8s ease-out forwards;
-        }
-      `}</style>
     </section>
   );
 };

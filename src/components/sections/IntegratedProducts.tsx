@@ -113,7 +113,7 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
     },
   };
 
-  const currentProduct = products[activeTab];
+  const currentProduct = (products as any)[activeTab];
 
   return (
     <div id={id} className="min-h-screen relative overflow-hidden">
@@ -185,7 +185,7 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
 
           {/* Navigation Tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
-            {Object.keys(products).map((product) => {
+            {(Object.keys(products) as Array<keyof typeof products>).map((product) => {
               const isActive = activeTab === product;
               const productData = products[product];
               return (
@@ -263,7 +263,7 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
 
                 {/* Features Grid */}
                 <div className="grid gap-4 mb-6">
-                  {currentProduct.features.map((feature, idx) => (
+                  {currentProduct.features.map((feature: string, idx: any) => (
                     <div
                       key={idx}
                       className={`group flex items-start gap-3 p-3 rounded-lg backdrop-blur-sm border transition-all ${
