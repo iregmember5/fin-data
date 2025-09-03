@@ -10,7 +10,7 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
   return (
     <div
       id={id}
-      className={`min-h-screen p-10 ${
+      className={`min-h-screen p-10  ${
         isDark
           ? "bg-gradient-to-br from-black via-gray-900 to-purple-900/20 text-white"
           : "bg-gradient-to-b from-gray-100 to-white text-gray-900"
@@ -56,7 +56,7 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
           ].map((feature, index) => (
             <div
               key={index}
-              className={`p-6 rounded-lg shadow-lg transition-shadow ${
+              className={` relative border rounded-3xl p-8 transition-all duration-500 hover:transform hover:scale-105 backdrop-blur-sm  shadow-lg  ${
                 isDark
                   ? "bg-gray-800 hover:shadow-purple-500/20"
                   : "bg-white hover:shadow-purple-300/20 border border-gray-200"

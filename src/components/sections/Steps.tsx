@@ -119,7 +119,7 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
     },
     {
       number: "04",
-      title: "Tax Pro Power Punches",
+      title: "Tax Plan Implementation",
       description:
         "From Strategy to Execution — Flawless Tax Plan Implementation You Can Trust.",
       icon: <BicepsFlexed size={24} />,

@@ -1,6 +1,7 @@
 import React from "react";
 // import { motion } from "framer-motion";
 import StockLineBackground from "../ui/StockLineBackground";
+import TaxScoreAnimation from "../ui/FloatingIconsAnimation";
 
 interface HeroProps {
   isDark: boolean;
@@ -27,6 +28,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, id }) => {
             isDark ? "text-gray-400" : "text-gray-600"
           }`}
         >
+          <b>Assemble, prepare and deliver  client documents with simplicity.</b> <br /><br />
           Smooth out every step — from gathering and organizing files, doing automated data entry / preparation of tax to ensuring most easy delivery and seamless integration — so your firm can focus on real work, not lost in the forest.
         </p>
         <div className="flex justify-center gap-4">
@@ -42,7 +44,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, id }) => {
       </div>
 
       {/* Stock Line Background */}
-      {isDark ? <StockLineBackground/> : ""}
+      {isDark ? <StockLineBackground/> : <TaxScoreAnimation />}
     </div>
   );
 };

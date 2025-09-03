@@ -56,7 +56,7 @@ const FirstSection: React.FC<FirstSectionProps> = ({ isDark, id }) => {
           ].map((feature, index) => (
             <div
               key={index}
-              className={`p-6 rounded-lg shadow-lg transition-shadow ${
+              className={`relative border rounded-3xl p-8 transition-all duration-500 hover:transform hover:scale-105 backdrop-blur-sm  shadow-lg ${
                 isDark
                   ? "bg-gray-800 hover:shadow-purple-500/20"
                   : "bg-white hover:shadow-purple-300/20 border border-gray-200"
