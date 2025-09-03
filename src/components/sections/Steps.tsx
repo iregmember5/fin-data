@@ -1,7 +1,15 @@
 import React from "react";
-import { CheckCircle, Upload, Link, BicepsFlexed, Wallet, LockKeyholeOpen } from "lucide-react";
+import {
+  CheckCircle,
+  Upload,
+  Link,
+  BicepsFlexed,
+  Wallet,
+  LockKeyholeOpen,
+} from "lucide-react";
 
 interface StepProps {
+  isDark: boolean;
   number: string;
   title: string;
   description: string;
@@ -13,8 +21,12 @@ const StepCard: React.FC<StepProps> = ({
   title,
   description,
   icon,
+  isDark,
 }) => (
-  <div className="group relative bg-gradient-to-br from-purple-900/20 via-black/30 to-purple-800/10 border border-purple-500/20 rounded-3xl p-8 hover:border-purple-400/40 transition-all duration-500 hover:transform hover:scale-105 backdrop-blur-sm">
+  <div
+    className="group relative bg-gradient-to-br from-purple-900/20 via-black/30 to-purple-800/10 border border-purple-500/20 
+  rounded-3xl p-8 hover:border-purple-400/40 transition-all duration-500 hover:transform hover:scale-105 backdrop-blur-sm"
+  >
     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
     <div className="relative z-10">
@@ -40,7 +52,7 @@ const StepCard: React.FC<StepProps> = ({
   </div>
 );
 
-const ProcessSection: React.FC<{ id?: string }> = ({ id }) => {
+const ProcessSection: React.FC<{ isDark: boolean, id?: string }> = ({isDark, id }) => {
   const steps = [
     {
       number: "01",
@@ -80,17 +92,17 @@ const ProcessSection: React.FC<{ id?: string }> = ({ id }) => {
     {
       number: "06",
       title: "Mastermind & Collaborate with Other Advisors",
-      description:
-        " Unlock New Value with Advisor Collaboration",
+      description: " Unlock New Value with Advisor Collaboration",
       icon: <LockKeyholeOpen size={24} />,
     },
-    
   ];
 
   return (
     <section id={id} className="min-h-screen relative py-20 px-6">
       {/* Dotted Background */}
-      <div className="absolute inset-0 bg-black/75 bg-[radial-gradient(circle,_rgba(255,255,255,0.06)_1px,_transparent_1px)] [background-size:24px_24px]"></div>
+      <div className={`absolute inset-0 bg-black/75 bg-[radial-gradient(circle,_rgba(255,255,255,0.06)_1px,_transparent_1px)] [background-size:24px_24px] ${
+        isDark ? "bg-black/80" : "bg-gray-50"
+      }`}></div>
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
@@ -118,7 +130,7 @@ const ProcessSection: React.FC<{ id?: string }> = ({ id }) => {
               className="animate-slide-up"
               style={{ animationDelay: `${index * 200}ms` }}
             >
-              <StepCard {...step} />
+              <StepCard isDark {...step} />
             </div>
           ))}
         </div>

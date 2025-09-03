@@ -23,9 +23,15 @@ const Home: React.FC<HomeProps> = ({ isDark, toggleTheme }) => {
       <FirstSection isDark={isDark} id="first" />
       <SecondSection isDark={isDark} id="second" />
       <ProcessSection isDark={isDark} id="process" />
+<<<<<<< Updated upstream
       <IntegratedProducts isDark={isDark} id="products" />
       <Security isDark={isDark} id="security" />
       <CTA isDark={isDark} id="cta" />
+=======
+      <IntegratedProducts  id="products" />
+      <Security  id="security" />
+      <CTA  id="cta" />
+>>>>>>> Stashed changes
 
       <Footer isDark={isDark} />
     </>
