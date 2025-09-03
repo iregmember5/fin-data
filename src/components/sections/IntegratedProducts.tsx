@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FileText, Send, Database, RollerCoaster, Wallet, LockKeyholeOpen } from "lucide-react";
+import AnimatedBackground from "../ui/AnimatedBackground";
 
-const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
+const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
   const [activeTab, setActiveTab] = useState("Assemble");
 
   const products = {
@@ -70,14 +71,14 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
         "Continuously verify, validate, and monitor implementation so nothing falls through the cracks.",
       ],
       benefit:
-        "✅ Ready to move from planning to execution? Let’s implement your tax strategy with confidence.",
+        "✅ Ready to move from planning to execution? Let's implement your tax strategy with confidence.",
       icon: <RollerCoaster className="w-6 h-6" />,
       gradient: "from-amber-400 via-orange-500 to-red-600",
       glowColor: "orange",
     },
     DataWalletsforFamilyOffice: {
       label: "Data Wallets for Family Office",
-      title: "Your Family’s Wealth, Organized and Protected in One Secure Data Wallet.",
+      title: "Your Family's Wealth, Organized and Protected in One Secure Data Wallet.",
       subtitle:
         "Centralized Solutions for Smarter Wealth Management and Seamless Transitions",
       features: [
@@ -87,14 +88,14 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
         "Support complex transactions such as marriages, divorces, joint ventures, mergers, and acquisitions.",
       ],
       benefit:
-        "✅ Safeguard your family’s legacy — start building your data wallet today.",
+        "✅ Safeguard your family's legacy — start building your data wallet today.",
       icon: <Wallet className="w-6 h-6" />,
       gradient: "from-violet-400 via-indigo-500 to-blue-600",
       glowColor: "indigo",
     },
     NewValueAdvisor: {
       label: "Mastermind & Collaborate with Other Advisors",
-      title: "🤝 Unlock New Value with Advisor Collaboration",
+      title: " Unlock New Value with Advisor Collaboration",
       subtitle:
         "Turn financial data into opportunities by working with a network of proactive advisors.",
       features: [
@@ -112,126 +113,72 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
     },
   };
 
-
   const currentProduct = products[activeTab];
-
-  // Cracked mirror SVG pattern
-  const CrackedMirrorPattern = () => (
-    <svg
-      className="absolute inset-0 w-full h-full"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <pattern
-          id="crackedMirror"
-          patternUnits="userSpaceOnUse"
-          width="200"
-          height="200"
-        >
-          <rect
-            width="200"
-            height="200"
-            fill="url(#mirrorGradient)"
-            opacity="0.1"
-          />
-          <path
-            d="M20,50 Q60,80 120,45 T180,70"
-            stroke="rgba(255,255,255,0.15)"
-            strokeWidth="1.5"
-            fill="none"
-          />
-          <path
-            d="M10,120 Q80,100 140,130 T200,110"
-            stroke="rgba(255,255,255,0.1)"
-            strokeWidth="1"
-            fill="none"
-          />
-          <path
-            d="M50,10 Q80,60 110,30 T150,80"
-            stroke="rgba(255,255,255,0.12)"
-            strokeWidth="1.2"
-            fill="none"
-          />
-          <path
-            d="M80,150 Q120,120 160,165 T200,140"
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="0.8"
-            fill="none"
-          />
-          <path
-            d="M0,80 Q40,50 90,85 T160,60"
-            stroke="rgba(255,255,255,0.18)"
-            strokeWidth="1.8"
-            fill="none"
-          />
-          <path
-            d="M30,30 L45,50"
-            stroke="rgba(255,255,255,0.06)"
-            strokeWidth="0.5"
-            fill="none"
-          />
-          <path
-            d="M150,20 L170,40"
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="0.6"
-            fill="none"
-          />
-          <path
-            d="M60,180 L80,160"
-            stroke="rgba(255,255,255,0.05)"
-            strokeWidth="0.4"
-            fill="none"
-          />
-          <path
-            d="M180,180 L160,160"
-            stroke="rgba(255,255,255,0.07)"
-            strokeWidth="0.5"
-            fill="none"
-          />
-        </pattern>
-
-        <linearGradient id="mirrorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(255,255,255,0.2)" />
-          <stop offset="50%" stopColor="rgba(255,255,255,0.05)" />
-          <stop offset="100%" stopColor="rgba(255,255,255,0.15)" />
-        </linearGradient>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#crackedMirror)" />
-    </svg>
-  );
 
   return (
     <div id={id} className="min-h-screen relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-black">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl animate-pulse delay-1500"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-56 h-56 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
-      </div>
-
-      {/* Cracked mirror overlay */}
-      <CrackedMirrorPattern />
+      {/* Background based on theme */}
+      {isDark ? (
+        <>
+          {/* Dark mode background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-black">
+            <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+            <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl animate-pulse delay-1500"></div>
+            <div className="absolute bottom-1/3 left-1/3 w-56 h-56 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+          </div>
+          <AnimatedBackground/>
+        </>
+      ) : (
+        <>
+          {/* Light mode background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50">
+            <div className="absolute top-20 left-20 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-200/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-200/30 rounded-full blur-3xl animate-pulse delay-2000"></div>
+            <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-amber-200/30 rounded-full blur-3xl animate-pulse delay-1500"></div>
+            <div className="absolute bottom-1/3 left-1/3 w-56 h-56 bg-indigo-200/30 rounded-full blur-3xl animate-pulse delay-500"></div>
+          </div>
+        </>
+      )}
 
       {/* Content */}
-      <div className="relative z-10 text-white">
+      <div className={`relative z-10 ${isDark ? "text-white" : "text-gray-800"}`}>
         {/* Header */}
         <div className="text-center py-16 px-6">
           <h1 className="text-5xl md:text-6xl font-black mb-4 relative">
-            <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+            <span className={`bg-gradient-to-r bg-clip-text text-transparent ${
+              isDark 
+                ? "from-white via-blue-200 to-purple-200" 
+                : "from-gray-800 via-blue-600 to-purple-600"
+            }`}>
               Our Easy-to-Use
             </span>
             &nbsp;
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className={`bg-gradient-to-r bg-clip-text text-transparent ${
+              isDark 
+                ? "from-purple-400 via-pink-400 to-cyan-400" 
+                : "from-purple-600 via-pink-600 to-cyan-600"
+            }`}>
               Services
             </span>
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent blur-sm"></div>
+            <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent blur-sm ${
+              isDark 
+                ? "via-cyan-400 to-transparent" 
+                : "via-cyan-600 to-transparent"
+            }`}></div>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-300 mb-12 font-light tracking-wide">
+          <p className={`text-lg md:text-xl mb-12 font-light tracking-wide ${
+            isDark ? "text-slate-300" : "text-gray-600"
+          }`}>
             Delivering a frictionless client journey, powered by{" "}
-            <span className="font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
+              isDark 
+                ? "from-cyan-400 to-purple-400" 
+                : "from-cyan-600 to-purple-600"
+            }`}>
               AI
             </span>
           </p>
@@ -247,8 +194,12 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
                   onClick={() => setActiveTab(product)}
                   className={`group relative px-6 py-3 rounded-xl font-semibold text-base transition-all duration-500 transform hover:scale-105 ${
                     isActive
-                      ? "bg-white/10 backdrop-blur-md text-white shadow-xl border border-white/20"
-                      : "bg-slate-800/40 backdrop-blur-sm text-slate-300 hover:bg-slate-700/60 hover:text-white border border-slate-700/50"
+                      ? isDark
+                        ? "bg-white/10 backdrop-blur-md text-white shadow-xl border border-white/20"
+                        : "bg-white backdrop-blur-md text-gray-800 shadow-xl border border-gray-200"
+                      : isDark
+                        ? "bg-slate-800/40 backdrop-blur-sm text-slate-300 hover:bg-slate-700/60 hover:text-white border border-slate-700/50"
+                        : "bg-white/70 backdrop-blur-sm text-gray-600 hover:bg-white hover:text-gray-800 border border-gray-200"
                   }`}
                 >
                   {isActive && (
@@ -273,12 +224,18 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
               className={`absolute -inset-3 bg-gradient-to-r ${currentProduct.gradient} rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-700`}
             ></div>
 
-            {/* Main card (compact) */}
-            <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-slate-700/50 shadow-xl hover:scale-[1.01] transition-transform duration-300">
+            {/* Main card */}
+            <div className={`relative backdrop-blur-xl rounded-2xl p-6 md:p-8 border shadow-xl hover:scale-[1.01] transition-transform duration-300 ${
+              isDark 
+                ? "bg-slate-900/80 border-slate-700/50" 
+                : "bg-white/90 border-gray-200/50"
+            }`}>
               <div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${currentProduct.gradient} p-[1px] opacity-40`}
               >
-                <div className="bg-slate-900/90 rounded-2xl w-full h-full"></div>
+                <div className={`rounded-2xl w-full h-full ${
+                  isDark ? "bg-slate-900/90" : "bg-white/90"
+                }`}></div>
               </div>
 
               <div className="relative z-10">
@@ -289,12 +246,18 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
                   >
                     {currentProduct.icon}
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+                  <h2 className={`text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent ${
+                    isDark 
+                      ? "from-white to-slate-300" 
+                      : "from-gray-800 to-gray-700"
+                  }`}>
                     {currentProduct.title}
                   </h2>
                 </div>
 
-                <p className="text-slate-300 mb-6 text-lg leading-snug font-light">
+                <p className={`mb-6 text-lg leading-snug font-light ${
+                  isDark ? "text-slate-300" : "text-gray-600"
+                }`}>
                   {currentProduct.subtitle}
                 </p>
 
@@ -303,12 +266,18 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
                   {currentProduct.features.map((feature, idx) => (
                     <div
                       key={idx}
-                      className="group flex items-start gap-3 p-3 rounded-lg bg-slate-800/40 backdrop-blur-sm border border-slate-700/30 hover:bg-slate-800/60 transition-all"
+                      className={`group flex items-start gap-3 p-3 rounded-lg backdrop-blur-sm border transition-all ${
+                        isDark
+                          ? "bg-slate-800/40 border-slate-700/30 hover:bg-slate-800/60"
+                          : "bg-white/70 border-gray-200/50 hover:bg-white"
+                      }`}
                     >
                       <div
                         className={`w-2.5 h-2.5 rounded-full bg-gradient-to-r ${currentProduct.gradient} mt-2`}
                       ></div>
-                      <span className="text-slate-200 text-base leading-snug flex-1">
+                      <span className={`text-base leading-snug flex-1 ${
+                        isDark ? "text-slate-200" : "text-gray-700"
+                      }`}>
                         {feature}
                       </span>
                     </div>
@@ -316,7 +285,11 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
                 </div>
 
                 {/* Benefit */}
-                <div className="p-4 rounded-xl bg-gradient-to-r from-slate-800/60 to-slate-700/60 backdrop-blur-sm border border-slate-600/50">
+                <div className={`p-4 rounded-xl backdrop-blur-sm border ${
+                  isDark
+                    ? "bg-gradient-to-r from-slate-800/60 to-slate-700/60 border-slate-600/50"
+                    : "bg-gradient-to-r from-white/80 to-gray-100/80 border-gray-200/50"
+                }`}>
                   <p
                     className={`text-lg font-semibold bg-gradient-to-r ${currentProduct.gradient} bg-clip-text text-transparent`}
                   >

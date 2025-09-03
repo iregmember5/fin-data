@@ -23,9 +23,9 @@ const Home: React.FC<HomeProps> = ({ isDark, toggleTheme }) => {
       <FirstSection isDark={isDark} id="first" />
       <SecondSection isDark={isDark} id="second" />
       <ProcessSection isDark={isDark} id="process" />
-      <IntegratedProducts  id="products" />
-      <Security  id="security" />
-      <CTA  id="cta" />
+      <IntegratedProducts isDark={isDark}  id="products" />
+      <Security isDark={isDark}  id="security" />
+      <CTA  isDark={isDark} id="cta" />
 
       <Footer isDark={isDark} />
     </>
