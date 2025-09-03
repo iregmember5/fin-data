@@ -1,12 +1,12 @@
-import { Lock, Repeat, Skull, Zap } from "lucide-react";
+import { CalendarCheck, RollerCoaster, Share2, Wallet } from "lucide-react";
 import React from "react";
 
-interface SecondSectionProps {
+interface FirstSectionProps {
   isDark: boolean;
   id?: string;
 }
 
-const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
+const FirstSection: React.FC<FirstSectionProps> = ({ isDark, id }) => {
   return (
     <div
       id={id}
@@ -21,11 +21,11 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-4">
             <span className={isDark ? "text-purple-500" : "text-purple-600"}>
-              TaxPilot
+              Beyond Tax Prep
             </span>
           </h1>
           <p className={`text-xl ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-            Built for Modern Accounting Firms
+            From Yearly Engagements to Continuous Value
           </p>
         </div>
 
@@ -33,25 +33,25 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {[
             {
-              title: "All-in-One Workflow",
-              description: "No juggling multiple platforms",
-              icon: <Repeat/>,
+              title: "Monthly Recurring Service",
+              description: "Convert yearly tax engagements into monthly recurring services by adding compliance and implementation.",
+              icon: <CalendarCheck/>,
             },
             {
-              title: "AI at Every Step",
+              title: "Implement Tax Plans",
               description:
-                "From intake to delivery, AI handles the repetitive work",
-              icon: <Skull/>,
+                "Go beyond “just paperwork” — actively implement tax plans for your clients",
+              icon: <RollerCoaster/>,
             },
             {
-              title: "Faster Onboarding",
-              description: "Integrates with your tax software in minutes",
-              icon: <Zap/>,
+              title: "Data Wallets",
+              description: "Maintain data wallets to extend support across mortgages, insurance, financial planning, and more.",
+              icon: <Wallet/>,
             },
             {
-              title: "Client-First Design",
-              description: "Simple, secure experience for every taxpayer",
-              icon: <Lock/>,
+              title: "Private Advisor Network",
+              description: "Create a private advisor network with trusted partners like insurance brokers, mortgage agents, and attorneys.",
+              icon: <Share2/>,
             },
           ].map((feature, index) => (
             <div
@@ -74,9 +74,9 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
         {/* Tagline */}
         <div className="text-center">
           <p className={`text-2xl font-bold ${isDark ? "text-purple-400" : "text-purple-600"}`}>
-            TaxPilot isn't just software — it's your firm's{" "}
+            Become the advisor who helps clients grow,{" "}
             <span className={isDark ? "text-purple-300" : "text-purple-500"}>
-              AI-powered copilot
+              not just file
             </span>
             .
           </p>
@@ -86,4 +86,4 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
   );
 };
 
-export default SecondSection;
+export default FirstSection;

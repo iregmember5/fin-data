@@ -30,7 +30,7 @@ const CTA: React.FC<{ id?: string }> = ({ id }) => {
             Get Started
           </button>
           <button className="bg-transparent hover:bg-gray-700 text-white font-bold py-3 px-6 border border-white/40 rounded-lg transition">
-            Book a Demo
+            Talk to Us
           </button>
         </div>
       </div>

@@ -1,12 +1,13 @@
 import React from "react";
-import { Rocket } from "lucide-react";
+import { Moon, Rocket, Sun } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
 
 interface NavbarProps {
   isDark: boolean;
+  toggleTheme: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isDark }) => {
+const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -47,6 +48,17 @@ const Navbar: React.FC<NavbarProps> = ({ isDark }) => {
 
         {/* Right-side Actions */}
         <div className="flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded-lg transition-colors ${
+              isDark
+                ? "bg-gray-700 hover:bg-gray-600 text-yellow-300"
+                : "bg-gray-200 hover:bg-gray-300 text-indigo-700"
+            }`}
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
           <button className="rounded-xl bg-white px-3 py-2 text-xs font-semibold text-indigo-700 hover:bg-white/90 transition-colors">
             Get Started
           </button>

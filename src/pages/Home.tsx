@@ -7,19 +7,25 @@ import Footer from "../components/sections/Footer";
 import Navbar from "../components/sections/Navbar";
 import SecondSection from "../components/sections/SecondSection";
 import ProcessSection from "../components/sections/Steps";
+import FirstSection from "../components/sections/FirstSection";
 
-const Home: React.FC = () => {
-  const isDark = true; // Replace with your theme toggle
+interface HomeProps {
+  isDark: boolean;
+  toggleTheme: () => void;
+}
+
+const Home: React.FC<HomeProps> = ({ isDark, toggleTheme }) => {
 
   return (
     <>
-      <Navbar isDark={isDark} />
+      <Navbar isDark={isDark}  toggleTheme={toggleTheme}/>
       <Hero isDark={isDark} id="hero" />
-      <SecondSection id="second" />
-      <ProcessSection id="process" />
-      <IntegratedProducts id="products" />
-      <Security id="security" />
-      <CTA id="cta" />
+      <FirstSection isDark={isDark} id="first" />
+      <SecondSection isDark={isDark} id="second" />
+      <ProcessSection isDark={isDark} id="process" />
+      <IntegratedProducts isDark={isDark} id="products" />
+      <Security isDark={isDark} id="security" />
+      <CTA isDark={isDark} id="cta" />
 
       <Footer isDark={isDark} />
     </>

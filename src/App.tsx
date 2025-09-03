@@ -4,7 +4,11 @@ import Home from "./pages/Home";
 
 const App: React.FC = () => {
   // Track theme state (light/dark)
-  const [isDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
+
+   const toggleTheme = () => {
+    setIsDark(!isDark);
+  };
 
   return (
     <div
@@ -43,7 +47,7 @@ const App: React.FC = () => {
 
       {/* Main Content */}
       <main>
-        <Home />
+        <Home isDark={isDark} toggleTheme={toggleTheme}/>
       </main>
     </div>
   );
