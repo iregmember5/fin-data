@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckCircle, Upload, Link } from "lucide-react";
+import { CheckCircle, Upload, Link, BicepsFlexed, Wallet, LockKeyholeOpen } from "lucide-react";
 
 interface StepProps {
   number: string;
@@ -58,11 +58,33 @@ const ProcessSection: React.FC<{ id?: string }> = ({ id }) => {
     },
     {
       number: "03",
-      title: "Connect",
+      title: "Prep",
       description:
-        "Review faster, reduce errors, and integrate seamlessly with your existing tax software.",
+        "AI powered preparation ( tax data entry ) backed with real humans.",
       icon: <Link size={24} />,
     },
+    {
+      number: "04",
+      title: "Tax Pro Power Punches",
+      description:
+        "From Strategy to Execution — Flawless Tax Plan Implementation You Can Trust.”",
+      icon: <BicepsFlexed size={24} />,
+    },
+    {
+      number: "05",
+      title: "Data Wallets for Family Office",
+      description:
+        "AI powered preparation ( tax data entry ) backed with real humans.",
+      icon: <Wallet size={24} />,
+    },
+    {
+      number: "06",
+      title: "Mastermind & Collaborate with Other Advisors",
+      description:
+        " Unlock New Value with Advisor Collaboration",
+      icon: <LockKeyholeOpen size={24} />,
+    },
+    
   ];
 
   return (
@@ -80,7 +102,7 @@ const ProcessSection: React.FC<{ id?: string }> = ({ id }) => {
           </div>
 
           <h2 className="text-5xl md:text-6xl font-black text-transparent bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text mb-6 tracking-tight">
-            Three Simple Steps
+            Tax Pro power Punches
           </h2>
 
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -106,7 +128,7 @@ const ProcessSection: React.FC<{ id?: string }> = ({ id }) => {
           <div className="inline-flex items-center gap-4 bg-gradient-to-r from-purple-600 to-purple-800 p-1 rounded-2xl shadow-2xl shadow-purple-600/25">
             <div className="bg-black/20 backdrop-blur-sm rounded-xl px-8 py-4">
               <p className="text-xl font-bold text-white mb-2">
-                Three steps. One platform.
+                Multiple steps. One platform.
               </p>
               <p className="text-purple-200 text-lg">
                 <span className="font-semibold text-white">Zero</span> wasted
@@ -122,7 +144,7 @@ const ProcessSection: React.FC<{ id?: string }> = ({ id }) => {
         </div>
       </div>
 
-      <style>{`
+      <style jsx>{`
         @keyframes fade-in {
           from {
             opacity: 0;

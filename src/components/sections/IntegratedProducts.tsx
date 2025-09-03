@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { FileText, Send, Database } from "lucide-react";
+import { FileText, Send, Database, RollerCoaster, Wallet, LockKeyholeOpen } from "lucide-react";
 
 const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
-  const [activeTab, setActiveTab] = useState<keyof typeof products>("Assemble");
+  const [activeTab, setActiveTab] = useState("Assemble");
 
   const products = {
     Assemble: {
+      label: "Assemble",
       title: "Simplify Tax Document Assembly with TaxPilot",
       subtitle:
         "Take the manual work out of tax prep with AI-powered automation.",
@@ -21,6 +22,7 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
       glowColor: "cyan",
     },
     Deliver: {
+      label: "Deliver",
       title: "Streamlined Tax Document Delivery with TaxPilot",
       subtitle: "Deliver returns in minutes, not days.",
       features: [
@@ -37,7 +39,8 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
       gradient: "from-fuchsia-400 via-purple-500 to-violet-600",
       glowColor: "purple",
     },
-    Connect: {
+    Prep: {
+      label: "Prep",
       title: "Smarter Accuracy & Seamless Reviews",
       subtitle:
         "Optimize tax form processing with AI precision and scalable automation.",
@@ -55,9 +58,62 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
       gradient: "from-emerald-400 via-green-500 to-teal-600",
       glowColor: "emerald",
     },
+    TaxPlanImplementation: {
+      label: "Tax Plan Implementation",
+      title: "From Strategy to Execution — Flawless Tax Plan Implementation You Can Trust.”",
+      subtitle:
+        "Turning Strategy into Action with Precision and Compliance",
+      features: [
+        "Go beyond strategy by ensuring every tax plan is put into action.",
+        "Provide detailed checklists, accountable plans, and structured guidelines.",
+        "Prepare all necessary paperwork, contracts, and agreements to support compliance.",
+        "Continuously verify, validate, and monitor implementation so nothing falls through the cracks.",
+      ],
+      benefit:
+        "✅ Ready to move from planning to execution? Let’s implement your tax strategy with confidence.",
+      icon: <RollerCoaster className="w-6 h-6" />,
+      gradient: "from-amber-400 via-orange-500 to-red-600",
+      glowColor: "orange",
+    },
+    DataWalletsforFamilyOffice: {
+      label: "Data Wallets for Family Office",
+      title: "Your Family’s Wealth, Organized and Protected in One Secure Data Wallet.",
+      subtitle:
+        "Centralized Solutions for Smarter Wealth Management and Seamless Transitions",
+      features: [
+        "Build a secure, centralized 'data wallet' to manage critical financial documents.",
+        "Assist in preparing paperwork for funding, mortgages, loans, grants, and insurance.",
+        "Organize and streamline family wealth planning, including trusts, inheritances, and next-generation transfers.",
+        "Support complex transactions such as marriages, divorces, joint ventures, mergers, and acquisitions.",
+      ],
+      benefit:
+        "✅ Safeguard your family’s legacy — start building your data wallet today.",
+      icon: <Wallet className="w-6 h-6" />,
+      gradient: "from-violet-400 via-indigo-500 to-blue-600",
+      glowColor: "indigo",
+    },
+    NewValueAdvisor: {
+      label: "Mastermind & Collaborate with Other Advisors",
+      title: "🤝 Unlock New Value with Advisor Collaboration",
+      subtitle:
+        "Turn financial data into opportunities by working with a network of proactive advisors.",
+      features: [
+        "Collaborate with trusted professionals — insurance agents, mortgage brokers, financial planners, real estate experts, attorneys, and more.",
+        "Help your clients 10X their business and uncover new revenue streams.",
+        "Seamless data exchange across industries: tax, accounting, insurance, employee benefits, mortgages, legal, and real estate.",
+        "Create a private advisor network ready to serve your clients on-demand.",
+        "Securely share and manage critical data across platforms while ensuring privacy and compliance.",
+      ],
+      benefit:
+        "💡 Provide ready-to-go Expert Financial Analysis to insurance and mortgage agents, enabling them to jumpstart their client relationships and close deals faster.",
+      icon: <LockKeyholeOpen className="w-6 h-6" />,
+      gradient: "from-red-400 via-red-500 to-pink-600",
+      glowColor: "red",
+    },
   };
 
-  const currentProduct = products[activeTab as keyof typeof products];
+
+  const currentProduct = products[activeTab];
 
   // Cracked mirror SVG pattern
   const CrackedMirrorPattern = () => (
@@ -151,6 +207,8 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
         <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl animate-pulse delay-1500"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-56 h-56 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       {/* Cracked mirror overlay */}
@@ -179,13 +237,14 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
           </p>
 
           {/* Navigation Tabs */}
-          <div className="flex flex-col sm:flex-row justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
             {Object.keys(products).map((product) => {
               const isActive = activeTab === product;
+              const productData = products[product];
               return (
                 <button
                   key={product}
-                  onClick={() => setActiveTab(product as keyof typeof products)}
+                  onClick={() => setActiveTab(product)}
                   className={`group relative px-6 py-3 rounded-xl font-semibold text-base transition-all duration-500 transform hover:scale-105 ${
                     isActive
                       ? "bg-white/10 backdrop-blur-md text-white shadow-xl border border-white/20"
@@ -194,12 +253,12 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
                 >
                   {isActive && (
                     <div
-                      className={`absolute inset-0 rounded-xl bg-gradient-to-r ${products[product as keyof typeof products].gradient} opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-300`}
+                      className={`absolute inset-0 rounded-xl bg-gradient-to-r ${productData.gradient} opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-300`}
                     ></div>
                   )}
                   <span className="relative z-10 flex items-center gap-2">
-                    {products[product as keyof typeof products].icon}
-                    {product}
+                    {productData.icon}
+                    {productData.label}
                   </span>
                 </button>
               );
@@ -241,7 +300,7 @@ const IntegratedProducts: React.FC<{ id?: string }> = ({ id }) => {
 
                 {/* Features Grid */}
                 <div className="grid gap-4 mb-6">
-                  {currentProduct.features.map((feature: string, idx: number) => (
+                  {currentProduct.features.map((feature, idx) => (
                     <div
                       key={idx}
                       className="group flex items-start gap-3 p-3 rounded-lg bg-slate-800/40 backdrop-blur-sm border border-slate-700/30 hover:bg-slate-800/60 transition-all"
