@@ -8,13 +8,13 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
   const products = {
      TaxPlanImplementation: {
       label: "Implement Tax Plans",
-      title: "From Strategy to Execution — Flawless Tax Plan Implementation You Can Trust.”",
+      title: "From Strategy to Execution — Proactive Tax Plan Implementation You Can Trust.”",
       subtitle:
         "Turning Strategy into Action with Precision and Compliance",
       features: [
         "Hand-holding support for premium clients — turning plans into reality",
         "Provide detailed checklists, accountable plans, and structured guidelines.",
-        "Prepare all necessary paperwork, contracts, and agreements to support compliance.",
+        "A central place for all artifacts to achieve Implementation compliance and peace of mind.",
         "Continuously verify, validate, and monitor implementation so nothing falls through the cracks.",
       ],
       benefit:
@@ -23,9 +23,9 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
       points: [
         "(Ongoing throughout the year).",
         "No matter what tax planning software you use, there comes a time to translate papers into action.",
-        "Here comes compliance. Here comes monitoring.",
+        "Here comes compliance. Here comes monitoring. Prove your value by facilitating implementation and providing peace of mind. ",
         "This is where you earn real trust.",
-        "While tax plans are everywhere, implementation is the true differentiator that makes you stand out"
+        "While tax plans are getting popular and common everywhere, implementation is the new differentiator that makes you stand out"
       ],
       icon: <RollerCoaster className="w-6 h-6" />,
       gradient: "from-amber-400 via-orange-500 to-red-600",

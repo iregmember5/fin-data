@@ -25,7 +25,7 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
             </span>
           </h1>
           <p className={`text-xl ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-            Built for Modern Accounting Firms
+           Built for forward thinking and proactive tax professionals....
           </p>
         </div>
 

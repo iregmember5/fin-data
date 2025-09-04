@@ -129,7 +129,7 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
       number: "05",
       title: "Data Wallets for Family Office",
       description:
-        "AI powered preparation ( tax data entry ) backed with real humans.",
+        "Turn scattered financial records into one secure, organized hub — built for smarter management, seamless sharing, and lasting client trust.",
       icon: <Wallet size={24} />,
     },
     {
@@ -141,7 +141,7 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
     {
       number: "07",
       title: "Data Sharing – Seamless Collaboration Made Simple",
-      description: " For tax, legal, and service professionals, smooth data sharing is the key to faster, smarter collaboration.",
+      description: " For tax, insurance, mortgage, legal, and financial services professionals.....  Secure data sharing is the key to faster, smarter outcomes.",
       icon: <DatabaseZap size={24} />,
     },
   ];
