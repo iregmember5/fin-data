@@ -6,9 +6,34 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
   const [activeTab, setActiveTab] = useState("Assemble");
 
   const products = {
+     TaxPlanImplementation: {
+      label: "Implement Tax Plans",
+      title: "From Strategy to Execution — Flawless Tax Plan Implementation You Can Trust.”",
+      subtitle:
+        "Turning Strategy into Action with Precision and Compliance",
+      features: [
+        "Hand-holding support for premium clients — turning plans into reality",
+        "Provide detailed checklists, accountable plans, and structured guidelines.",
+        "Prepare all necessary paperwork, contracts, and agreements to support compliance.",
+        "Continuously verify, validate, and monitor implementation so nothing falls through the cracks.",
+      ],
+      benefit:
+        "✅ Ready to move from planning to execution? Let's implement your tax strategy with confidence.",
+      question: "Why It Matters",
+      points: [
+        "(Ongoing throughout the year).",
+        "No matter what tax planning software you use, there comes a time to translate papers into action.",
+        "Here comes compliance. Here comes monitoring.",
+        "This is where you earn real trust.",
+        "While tax plans are everywhere, implementation is the true differentiator that makes you stand out"
+      ],
+      icon: <RollerCoaster className="w-6 h-6" />,
+      gradient: "from-amber-400 via-orange-500 to-red-600",
+      glowColor: "orange",
+    },
     Assemble: {
       label: "Assemble",
-      title: "Simplify Tax Document Assembly with TaxPilot",
+      title: "Simplify Tax Document Assembly with myfindata",
       subtitle:
         "Take the manual work out of tax prep with AI-powered automation.",
       features: [
@@ -18,13 +43,20 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
       ],
       benefit:
         "➡️ Save hours in prep time, reduce errors, and streamline tax assembly.",
+      question: "Why It Matters",
+      points: [
+        "Eliminates repetitive manual work",
+        "Cuts down on client back-and-forth",
+        "Increases accuracy and reduces errors",
+        "Frees up your team to focus on higher-value planning"
+      ],
       icon: <FileText className="w-6 h-6" />,
       gradient: "from-cyan-400 via-blue-500 to-indigo-600",
       glowColor: "cyan",
     },
     Deliver: {
       label: "Deliver",
-      title: "Streamlined Tax Document Delivery with TaxPilot",
+      title: "Streamlined Tax Document Delivery with myfindata",
       subtitle: "Deliver returns in minutes, not days.",
       features: [
         "Collect Payment Before Delivery – Ensure secure payments upfront.",
@@ -36,6 +68,14 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
       ],
       benefit:
         "➡️ Automate delivery from payment to e-signature—fast, secure, and client-friendly.",
+      question: "Why It Matters",
+      points: [
+        "Faster turnaround = happier clients",
+        "Secure, upfront payments improve cash flow",
+        "Less manual work frees your team for higher-value tasks",
+        "Enhanced KBA Security – Unlike expensive credit reporting companies that rely on outdated security questions clients often can't recall, we use AI-generated, easy-to-remember questions",
+        "Cost-Effective & Supportive – If clients get stuck, they can join a live conference call with transcription, translation, and AI-powered assistance"
+      ],
       icon: <Send className="w-6 h-6" />,
       gradient: "from-fuchsia-400 via-purple-500 to-violet-600",
       glowColor: "purple",
@@ -55,46 +95,44 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
       ],
       benefit:
         "➡️ Reduce review time, protect client data, and simplify workflows with end-to-end automation.",
+      question: "Why It Matters",
+      points: [
+        "Faster, more accurate reviews with fewer errors",
+        "Lower costs through automation at scale",
+        "Stronger client trust with bank-grade data security",
+        "Simplifies team workflows so you can process more returns in less time"
+      ],
       icon: <Database className="w-6 h-6" />,
       gradient: "from-emerald-400 via-green-500 to-teal-600",
       glowColor: "emerald",
     },
-    TaxPlanImplementation: {
-      label: "Tax Plan Implementation",
-      title: "From Strategy to Execution — Flawless Tax Plan Implementation You Can Trust.”",
-      subtitle:
-        "Turning Strategy into Action with Precision and Compliance",
-      features: [
-        "Go beyond strategy by ensuring every tax plan is put into action.",
-        "Provide detailed checklists, accountable plans, and structured guidelines.",
-        "Prepare all necessary paperwork, contracts, and agreements to support compliance.",
-        "Continuously verify, validate, and monitor implementation so nothing falls through the cracks.",
-      ],
-      benefit:
-        "✅ Ready to move from planning to execution? Let's implement your tax strategy with confidence.",
-      icon: <RollerCoaster className="w-6 h-6" />,
-      gradient: "from-amber-400 via-orange-500 to-red-600",
-      glowColor: "orange",
-    },
     DataWalletsforFamilyOffice: {
       label: "Data Wallets for Family Office",
-      title: "Your Family's Wealth, Organized and Protected in One Secure Data Wallet.",
+      title: "Your clients scattered financial artifacts now Organized and Protected in Secure Data Wallets",
       subtitle:
-        "Centralized Solutions for Smarter Wealth Management and Seamless Transitions",
+        " Centralized Solutions for Smarter financial artifacts Management and Seamless sharing of pre-authorized data.",
       features: [
         "Build a secure, centralized 'data wallet' to manage critical financial documents.",
-        "Assist in preparing paperwork for funding, mortgages, loans, grants, and insurance.",
-        "Organize and streamline family wealth planning, including trusts, inheritances, and next-generation transfers.",
-        "Support complex transactions such as marriages, divorces, joint ventures, mergers, and acquisitions.",
+        "Assist in preparing paperwork for funding, mortgages, loans, grants, insurance, financial planning",
+        "Enable seamless data sharing with attorneys, advisors, and family members — only the right people access the right information",
+        "By becoming the custodian of the financial artifacts… Make it easy for your clients to cut costs by enabling to compare current expenses with the proposed solutions by new vendors.",
       ],
       benefit:
         "✅ Safeguard your family's legacy — start building your data wallet today.",
+      question: "Why It Matters",
+      points: [
+        "Eliminates scattered records",
+        "One secure hub for financial and wealth documents",
+        "Safe, pre-authorized access for the right people",
+        "Helps clients save money through smarter vendor comparisons",
+        "Builds long-term trust with stronger data protection"
+      ],
       icon: <Wallet className="w-6 h-6" />,
       gradient: "from-violet-400 via-indigo-500 to-blue-600",
       glowColor: "indigo",
     },
     NewValueAdvisor: {
-      label: "Mastermind & Collaborate with Other Advisors",
+      label: "Network & Collaborate with Other Advisors",
       title: " Unlock New Value with Advisor Collaboration",
       subtitle:
         "Turn financial data into opportunities by working with a network of proactive advisors.",
@@ -107,8 +145,41 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
       ],
       benefit:
         "💡 Provide ready-to-go Expert Financial Analysis to insurance and mortgage agents, enabling them to jumpstart their client relationships and close deals faster.",
+      question: "Why It Matters",
+      points: [
+        "Expands your role from tax advisor to trusted business partner",
+        "Opens doors to new revenue streams through cross-industry collaboration",
+        "Strengthens client relationships by delivering more holistic solutions",
+        "Positions your firm as part of a powerful, connected advisor ecosystem"
+      ],
       icon: <LockKeyholeOpen className="w-6 h-6" />,
       gradient: "from-red-400 via-red-500 to-pink-600",
+      glowColor: "red",
+    },
+    DataSharing: {
+      label: "Data Sharing",
+      title: " Data Sharing – Seamless Collaboration Made Simple",
+      subtitle:
+        "For tax, legal, and service professionals, smooth data sharing is the key to faster, smarter collaboration.",
+      features: [
+        "Effortlessly share insights and data with individual clients or colleagues through self-service sharing",
+        "Collaborate with service providers and specialists on the same dataset in real time",
+        "Strengthen professional networks and build lasting partnerships securely",
+        "Refer or delegate tasks to trusted third parties for simplified workflows",
+        "Ensure all client data is centralized, secure, and easy to access",
+        "Protect sensitive information with top-tier confidentiality and security",
+      ],
+      benefit:
+        "Myfindata's Data Sharing makes teamwork simple, secure, and efficient.",
+      question: "Why It Matters",
+      points: [
+        "One secure hub for all their data",
+        "Faster collaboration with professionals",
+        "Confidence their information is protected",
+        "Start sharing smarter today."
+      ],
+      icon: <LockKeyholeOpen className="w-6 h-6" />,
+      gradient: "from-indigo-400 via-indigo-500 to-red-600",
       glowColor: "red",
     },
   };
@@ -285,7 +356,7 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
                 </div>
 
                 {/* Benefit */}
-                <div className={`p-4 rounded-xl backdrop-blur-sm border ${
+                <div className={`p-4 rounded-xl backdrop-blur-sm border mb-6 ${
                   isDark
                     ? "bg-gradient-to-r from-slate-800/60 to-slate-700/60 border-slate-600/50"
                     : "bg-gradient-to-r from-white/80 to-gray-100/80 border-gray-200/50"
@@ -295,6 +366,32 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
                   >
                     {currentProduct.benefit}
                   </p>
+                </div>
+
+                {/* Question and Points Section */}
+                <div className={`p-4 rounded-xl backdrop-blur-sm border ${
+                  isDark
+                    ? "bg-slate-800/40 border-slate-700/50"
+                    : "bg-white/70 border-gray-200/50"
+                }`}>
+                  <h3 className={`text-lg font-semibold mb-3 ${
+                    isDark ? "text-cyan-300" : "text-cyan-600"
+                  }`}>
+                    {currentProduct.question}
+                  </h3>
+                  
+                  <div className="space-y-2">
+                    {currentProduct.points.map((point: string, idx: any) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <div className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${
+                          isDark ? "bg-cyan-400" : "bg-cyan-500"
+                        }`}></div>
+                        <p className={`text-sm ${isDark ? "text-slate-300" : "text-gray-600"}`}>
+                          {point}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

@@ -21,7 +21,7 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-4">
             <span className={isDark ? "text-purple-500" : "text-purple-600"}>
-              TaxPilot
+              myfindata
             </span>
           </h1>
           <p className={`text-xl ${isDark ? "text-gray-300" : "text-gray-600"}`}>
@@ -33,14 +33,14 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {[
             {
-              title: "All-in-One Workflow",
-              description: "No juggling multiple platforms",
+              title: "AI powered Workflow",
+              description: "Use the power of multiple platforms",
               icon: <Repeat/>,
             },
             {
               title: "AI at Every Step",
               description:
-                "From intake to delivery, AI handles the repetitive work",
+                "Efficient gathering of tax & financial artifacts.",
               icon: <Skull/>,
             },
             {
@@ -74,7 +74,7 @@ const SecondSection: React.FC<SecondSectionProps> = ({ isDark, id }) => {
         {/* Tagline */}
         <div className="text-center">
           <p className={`text-2xl font-bold ${isDark ? "text-purple-400" : "text-purple-600"}`}>
-            TaxPilot isn't just software — it's your firm's{" "}
+            myfindata isn't just software — it's your firm's{" "}
             <span className={isDark ? "text-purple-300" : "text-purple-500"}>
               AI-powered copilot
             </span>

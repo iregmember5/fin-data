@@ -14,7 +14,7 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
             : "border-gray-200 text-gray-700"
         }`}
       >
-        <p>© {new Date().getFullYear()} TaxPilot. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} myfindata. All rights reserved.</p>
         <div className="flex items-center gap-6">
           <a
             href="#"

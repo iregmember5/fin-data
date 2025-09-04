@@ -6,6 +6,7 @@ import {
   BicepsFlexed,
   Wallet,
   LockKeyholeOpen,
+  DatabaseZap,
 } from "lucide-react";
 
 interface StepProps {
@@ -98,17 +99,17 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
   const steps = [
     {
       number: "01",
+      title: "Implement Tax Plans. (Ongoing throughout the year)",
+      description:
+        "From Strategy to Execution — Flawless Tax Plan Implementation You Can Trust.",
+      icon: <BicepsFlexed size={24} />,
+    },
+    {
+      number: "02",
       title: "Assemble",
       description:
         "Collect, organize, and request only the documents you need with smart checklists and intelligent questionnaires.",
       icon: <CheckCircle size={24} />,
-    },
-    {
-      number: "02",
-      title: "Deliver",
-      description:
-        "Automate return delivery with seamless payments, e-signatures, and instant portal uploads.",
-      icon: <Upload size={24} />,
     },
     {
       number: "03",
@@ -119,10 +120,10 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
     },
     {
       number: "04",
-      title: "Tax Plan Implementation",
+      title: "Deliver",
       description:
-        "From Strategy to Execution — Flawless Tax Plan Implementation You Can Trust.",
-      icon: <BicepsFlexed size={24} />,
+        "Automate return delivery with seamless payments, e-signatures, and instant portal uploads.",
+      icon: <Upload size={24} />,
     },
     {
       number: "05",
@@ -133,9 +134,15 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
     },
     {
       number: "06",
-      title: "Mastermind & Collaborate with Other Advisors",
+      title: "Network & Collaborate with Other Advisors",
       description: "Unlock New Value with Advisor Collaboration",
       icon: <LockKeyholeOpen size={24} />,
+    },
+    {
+      number: "07",
+      title: "Data Sharing – Seamless Collaboration Made Simple",
+      description: " For tax, legal, and service professionals, smooth data sharing is the key to faster, smarter collaboration.",
+      icon: <DatabaseZap size={24} />,
     },
   ];
 
@@ -213,7 +220,7 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
             >
               <p
                 className={`text-xl font-bold mb-2 ${
-                  isDark ? "text-white" : "text-gray-800"
+                  isDark ? "text-white" : "text-white"
                 }`}
               >
                 Multiple steps. One platform.
@@ -225,7 +232,7 @@ const ProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
               >
                 <span
                   className={`font-semibold ${
-                    isDark ? "text-white" : "text-gray-800"
+                    isDark ? "text-white" : "text-white"
                   }`}
                 >
                   Zero

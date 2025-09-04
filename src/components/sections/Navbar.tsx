@@ -16,14 +16,15 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-500 via-fuchsia-500 to-cyan-400">
             <Rocket className="h-5 w-5 text-white" />
           </div>
-          <span className="text-lg font-bold tracking-tight">TaxPilot</span>
+          <span className="text-lg font-bold tracking-tight">myfindata</span>
         </div>
 
         {/* Nav Links */}
         <nav className="hidden items-center gap-6 md:flex">
           {[
             ["Home", "hero"],
-            ["Features", "second"],
+            ["Features", "first"],
+            // ["Features", "second"],
             ["Process", "process"],
             ["Products", "products"],
             ["Security", "security"],
@@ -59,9 +60,9 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
           >
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <button className="rounded-xl bg-white px-3 py-2 text-xs font-semibold text-indigo-700 hover:bg-white/90 transition-colors">
+          {/* <button className="rounded-xl bg-white px-3 py-2 text-xs font-semibold text-indigo-700 hover:bg-white/90 transition-colors">
             Get Started
-          </button>
+          </button> */}
         </div>
       </div>
     </header>

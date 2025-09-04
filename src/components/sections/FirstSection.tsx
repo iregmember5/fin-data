@@ -34,23 +34,42 @@ const FirstSection: React.FC<FirstSectionProps> = ({ isDark, id }) => {
           {[
             {
               title: "Monthly Recurring Service",
-              description: "Convert yearly tax engagements into monthly recurring services by adding compliance and implementation.",
+              subtitle: "Convert yearly tax engagements into steady monthly services.",
+              Question: "Why it matters:",
+              point1: "Add compliance & implementation",
+              point2: "Turn one-time projects into recurring revenue",
+              point3: "Build long-term client relationships",
+              footer: "👉 “Turn compliance into continuous value.”",
               icon: <CalendarCheck/>,
             },
             {
               title: "Implement Tax Plans",
-              description:
-                "Go beyond “just paperwork” — actively implement tax plans for your clients",
+              subtitle: "Go beyond “just paperwork” — deliver real, actionable results.",
+              Question: "What you provide:",
+              point1: "Actively implement tax strategies",
+              point2: "Differentiate from other tax planners",
+              point3: "Help clients save more & grow faster",
+              footer: "👉 “Be the advisor clients rely on all year.”",
               icon: <RollerCoaster/>,
             },
             {
               title: "Data Wallets",
-              description: "Maintain data wallets to extend support across mortgages, insurance, financial planning, and more.",
+              subtitle: "You already hold your clients’ valuable data—unlock its potential.",
+              Question: "With Data Wallets:",
+              point1: "Securely store & manage data",
+              point2: "Support mortgages, insurance & financial planning",
+              point3: "Create a one-stop hub for clients’ needs",
+              footer: "👉 “Unlock client data for smarter planning.”",
               icon: <Wallet/>,
             },
             {
-              title: "Private Advisor Network",
-              description: "Create a private advisor network with trusted partners like insurance brokers, mortgage agents, and attorneys.",
+             title: " Private Advisor Network",
+              subtitle: "Expand your impact by partnering with trusted professionals.",
+              Question: "How you help clients:",
+              point1: "Collaborate with mortgage agents, brokers & attorneys",
+              point2: "Automate loan packages & insurance quotes",
+              point3: "Cut costs with seamless planning",
+              footer: "👉 “Collaborate to deliver more value.”",
               icon: <Share2/>,
             },
           ].map((feature, index) => (
@@ -59,13 +78,24 @@ const FirstSection: React.FC<FirstSectionProps> = ({ isDark, id }) => {
               className={`relative border rounded-3xl p-8 transition-all duration-500 hover:transform hover:scale-105 backdrop-blur-sm  shadow-lg ${
                 isDark
                   ? "bg-gray-800 hover:shadow-purple-500/20"
-                  : "bg-white hover:shadow-purple-300/20 border border-gray-200"
+                  : "bg-gray-100 hover:shadow-purple-300/20 border border-gray-200"
               }`}
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+              <h6 className="text-md  mb-2">{feature.subtitle}</h6>
+              <p className="text-sm font-semibold mb-2">{feature.Question}</p>
               <p className={isDark ? "text-gray-400" : "text-gray-600"}>
-                {feature.description}
+                {feature.point1}
+              </p>
+              <p className={isDark ? "text-gray-400" : "text-gray-600"}>
+                {feature.point2}
+              </p>
+              <p className={isDark ? "text-gray-400" : "text-gray-600"}>
+                {feature.point3}
+              </p>
+              <p className={isDark ? "text-gray-400" : "text-gray-600"}>
+                {feature.footer}
               </p>
             </div>
           ))}

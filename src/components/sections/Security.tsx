@@ -59,21 +59,30 @@ const Security: React.FC<{isDark: boolean, id?: string }> = ({ isDark, id }) => 
           <p className={`mb-6 leading-relaxed ${
             isDark ? "text-slate-300" : "text-gray-600"
           }`}>
-            Protect Client Data with{" "}
+            We plan to Protect Client Data with{" "}
             <span className={`font-semibold ${
               isDark ? "text-purple-400" : "text-purple-600"
             }`}>
               Bank-Grade Security
             </span>
-            . Your clients trust you with their most sensitive financial data.
-            We ensure it stays secure with multiple layers of authentication and
-            compliance-ready safeguards.
+            .  Your clients trust you with their most sensitive financial data. We will ensure it stays secure with multiple layers of authentication and compliance-ready safeguards.
+            <b>We will also be seeking SOC 2 certification upon launch.</b>
           </p>
 
           {/* Features */}
+          
+              
+              <p className="my-2">
+                <span className="font-bold text-purple-700">
+                  🔑 What Security Is in the Works:
+                </span>
+                
+              </p>
+            
           <ul className={`space-y-4 ${
             isDark ? "text-slate-200" : "text-gray-700"
           }`}>
+            
             <li className="flex items-start gap-3">
               <span className={`w-2.5 h-2.5 rounded-full mt-2 ${
                 isDark ? "bg-purple-400" : "bg-purple-500"
@@ -93,8 +102,8 @@ const Security: React.FC<{isDark: boolean, id?: string }> = ({ isDark, id }) => 
                 <span className="font-semibold">
                   Knowledge-Based Authentication (KBA)
                 </span>{" "}
-                – Options include MAGIC, manual verification, and OTP via
-                email/SMS
+                –  Options include automatic AI-powered KBA (proprietary mechanism, code name MAGIC KBA), manual creation of KBA, and OTP via email/SMS
+
               </p>
             </li>
             <li className="flex items-start gap-3">
@@ -123,8 +132,7 @@ const Security: React.FC<{isDark: boolean, id?: string }> = ({ isDark, id }) => 
           <p className={`mt-8 font-semibold text-lg ${
             isDark ? "text-purple-300" : "text-purple-600"
           }`}>
-            ➡️ With TaxPilot, security isn't an add-on — it's built into every
-            step.
+            ➡️ With MyFinData, security isn’t an add-on — it will be built into every step.
           </p>
         </div>
       </div>

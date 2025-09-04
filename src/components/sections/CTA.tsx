@@ -34,7 +34,7 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
         <p className={`text-base md:text-lg max-w-2xl mx-auto mb-8 ${
           isDark ? "text-gray-300" : "text-gray-600"
         }`}>
-          From intake to delivery, TaxPilot eliminates tedious tasks while
+          From intake to delivery, myfindata eliminates tedious tasks while
           keeping your client data safe with industry-leading security.
         </p>
 
@@ -45,7 +45,7 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
               ? "bg-purple-600 hover:bg-purple-700 text-white"
               : "bg-purple-600 hover:bg-purple-700 text-white"
           }`}>
-            Get Started
+            Apply For Early Access
           </button>
           <button className={`font-bold py-3 px-6 border rounded-lg transition ${
             isDark
