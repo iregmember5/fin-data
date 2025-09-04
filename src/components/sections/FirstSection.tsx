@@ -63,7 +63,7 @@ const FirstSection: React.FC<FirstSectionProps> = ({ isDark, id }) => {
               icon: <Wallet/>,
             },
             {
-             title: " Private Advisor Network",
+             title: "Advisor Network",
               subtitle: "Expand your impact by partnering with trusted professionals.",
               Question: "How you help clients:",
               point1: "Collaborate with mortgage agents, brokers & attorneys",

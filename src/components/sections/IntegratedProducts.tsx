@@ -3,7 +3,7 @@ import { FileText, Send, Database, RollerCoaster, Wallet, LockKeyholeOpen } from
 import AnimatedBackground from "../ui/AnimatedBackground";
 
 const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
-  const [activeTab, setActiveTab] = useState("Assemble");
+  const [activeTab, setActiveTab] = useState("TaxPlanImplementation");
 
   const products = {
      TaxPlanImplementation: {
