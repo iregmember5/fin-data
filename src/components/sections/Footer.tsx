@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
               isDark ? "hover:text-white" : "hover:text-gray-900"
             }`}
           >
-            Privacy
+            Privacy..
           </a>
           <a
             href="#"
