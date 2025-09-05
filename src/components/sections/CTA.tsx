@@ -58,7 +58,8 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
         mode: 'no-cors', // Important for Google Apps Script
         body: formDataForSheets
       });
-      
+      console.log(response);
+
       // Since we're using no-cors, we can't check response status
       // But we'll assume it was successful if no error is thrown
       console.log("Data successfully sent to Google Sheets");
