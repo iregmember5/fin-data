@@ -14,7 +14,7 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
             : "border-gray-200 text-gray-700"
         }`}
       >
-        <p>© {new Date().getFullYear()} myfindata. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} myfindata All rights reserved.</p>
         <div className="flex items-center gap-6">
           <a
             href="#"
@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
               isDark ? "hover:text-white" : "hover:text-gray-900"
             }`}
           >
-            Privacy
+            Privac
           </a>
           <a
             href="#"
