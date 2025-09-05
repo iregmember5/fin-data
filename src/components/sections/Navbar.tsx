@@ -25,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
             ["Home", "hero"],
             ["Features", "first"],
             // ["Features", "second"],
-            ["Process", "process"],
+            ["How It Works", "process"],
             ["Products", "products"],
             ["Security", "security"],
             ["CTA", "cta"],
