@@ -122,11 +122,11 @@ const Hero: React.FC<HeroProps> = ({ isDark, id }) => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p className="text-lg md:text-xl mb-6">
-            Use the power of AI and cutting-edge technology to earn back 100% platform fees.
+            By becoming our Affiliate partner reduce our platform fees to a zero.... Plus earn a lot more....
           </p>
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium">
             <Zap size={18} className="mr-2" />
-            <span>Ask us how?</span>
+            <button>Ask us how?</button>
           </div>
         </motion.div>
 
