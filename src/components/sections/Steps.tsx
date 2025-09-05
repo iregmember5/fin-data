@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   CheckCircle,
   Upload,
@@ -7,13 +7,13 @@ import {
   Wallet,
   LockKeyholeOpen,
   DatabaseZap,
-  ArrowRight,
   Users,
   FileText,
   Clock,
   Mail,
   CreditCard,
-  Eye
+  Eye,
+  ChevronDown
 } from "lucide-react";
 
 interface StepProps {
@@ -123,7 +123,6 @@ const StepCard: React.FC<StepProps> = ({
     <div className={`absolute top-4 right-4 transition-opacity duration-300 ${
       isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-100"
     }`}>
-      <ArrowRight className={`w-5 h-5 ${isDark ? "text-purple-400" : "text-purple-600"}`} />
     </div>
   </div>
 );
@@ -244,6 +243,20 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
   id,
 }) => {
   const [selectedStep, setSelectedStep] = useState<string | null>(null);
+  const detailSectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (selectedStep && detailSectionRef.current) {
+      // Add a small delay to ensure the content is rendered
+      setTimeout(() => {
+        detailSectionRef.current?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [selectedStep]);
 
   const steps = [
     {
@@ -535,8 +548,17 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
     }
   };
 
-  return (
-    <section id={id} className="min-h-screen relative py-20 px-6">
+    const handleStepClick = (stepKey: string) => {
+    // If clicking the same step, close it
+    if (selectedStep === stepKey) {
+      setSelectedStep(null);
+    } else {
+      setSelectedStep(stepKey);
+    }
+  };
+
+ return (
+    <section id={id} className="min-h-screen relative py-20 px-4 sm:px-6" ref={sectionRef}>
       {/* Background */}
       <div
         className={`absolute inset-0 [background-size:24px_24px] ${
@@ -548,7 +570,7 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-20 animate-fade-in">
+        <div className="text-center mb-12 md:mb-20 animate-fade-in">
           <div className="inline-block mb-4">
             <span
               className={`text-sm font-semibold px-4 py-2 rounded-full border ${
@@ -562,7 +584,7 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
           </div>
 
           <h2
-            className={`text-5xl md:text-6xl font-black bg-clip-text mb-6 tracking-tight ${
+            className={`text-4xl md:text-5xl lg:text-6xl font-black bg-clip-text mb-6 tracking-tight ${
               isDark
                 ? "text-transparent bg-gradient-to-r from-white via-purple-200 to-purple-400"
                 : "text-transparent bg-gradient-to-r from-gray-800 via-purple-600 to-purple-700"
@@ -572,7 +594,7 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
           </h2>
 
           <p
-            className={`text-xl max-w-2xl mx-auto mb-4 ${
+            className={`text-lg md:text-xl max-w-2xl mx-auto mb-4 ${
               isDark ? "text-gray-300" : "text-gray-600"
             }`}
           >
@@ -580,45 +602,65 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
           </p>
 
           <p
-            className={`text-lg font-medium ${
+            className={`text-base md:text-lg font-medium ${
               isDark ? "text-purple-400" : "text-purple-600"
             }`}
           >
             Click any card to see detailed workflow breakdown
           </p>
+         
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-7 gap-4 mb-4">
+        {/* Steps Grid - Improved mobile layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3 mb-4 pb-2">
           {steps.map((step, index) => (
             <div
               key={step.number}
-              className="animate-slide-up"
+              className="animate-slide-up min-w-[280px] sm:min-w-0"
               style={{ animationDelay: `${index * 200}ms` }}
             >
               <StepCard 
                 isDark={isDark} 
                 {...step} 
                 isSelected={selectedStep === step.key}
-                onClick={() => setSelectedStep(selectedStep === step.key ? null : step.key)}
+                onClick={() => handleStepClick(step.key)}
               />
             </div>
           ))}
         </div>
 
-        {/* Detail Section */}
-        {selectedStep && stepDetails[selectedStep as keyof typeof stepDetails] && (
-          <DetailSection
-            isDark={isDark}
-            title={stepDetails[selectedStep as keyof typeof stepDetails].title}
-            steps={stepDetails[selectedStep as keyof typeof stepDetails].steps}
-            screenshots={stepDetails[selectedStep as keyof typeof stepDetails].screenshots}
-          />
-        )}
+        {/* Detail Section with ref for scrolling */}
+        <div ref={detailSectionRef}>
+          {selectedStep && stepDetails[selectedStep as keyof typeof stepDetails] && (
+            <>
+              {/* Mobile back button */}
+              <div className="md:hidden mb-6 flex justify-center">
+                <button
+                  onClick={() => setSelectedStep(null)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+                    isDark 
+                      ? "bg-purple-800/50 text-purple-200" 
+                      : "bg-purple-200 text-purple-700"
+                  }`}
+                >
+                  <ChevronDown size={16} className="rotate-90" />
+                  Back to all steps
+                </button>
+              </div>
+              
+              <DetailSection
+                isDark={isDark}
+                title={stepDetails[selectedStep as keyof typeof stepDetails].title}
+                steps={stepDetails[selectedStep as keyof typeof stepDetails].steps}
+                screenshots={stepDetails[selectedStep as keyof typeof stepDetails].screenshots}
+              />
+            </>
+          )}
+        </div>
 
         {/* CTA Section */}
         {!selectedStep && (
-          <div className="text-center">
+          <div className="text-center mt-12">
             <div
               className={`inline-flex items-center gap-4 p-1 rounded-2xl shadow-2xl ${
                 isDark
@@ -627,19 +669,19 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
               }`}
             >
               <div
-                className={`backdrop-blur-sm rounded-xl px-8 py-4 ${
+                className={`backdrop-blur-sm rounded-xl px-6 py-3 md:px-8 md:py-4 ${
                   isDark ? "bg-black/20" : "bg-white/20"
                 }`}
               >
                 <p
-                  className={`text-xl font-bold mb-2 ${
+                  className={`text-lg md:text-xl font-bold mb-2 ${
                     isDark ? "text-white" : "text-white"
                   }`}
                 >
                   Multiple steps. One platform.
                 </p>
                 <p
-                  className={`text-lg ${
+                  className={`text-base md:text-lg ${
                     isDark ? "text-purple-200" : "text-purple-100"
                   }`}
                 >
@@ -653,13 +695,13 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
                   wasted time.
                 </p>
               </div>
-              <div className="pr-6">
+              <div className="pr-4 md:pr-6">
                 <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                  className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ${
                     isDark ? "bg-white/10" : "bg-white/30"
                   }`}
                 >
-                  <span className="text-2xl">⚡</span>
+                  <span className="text-xl md:text-2xl">⚡</span>
                 </div>
               </div>
             </div>
