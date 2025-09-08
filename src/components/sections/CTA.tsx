@@ -5,6 +5,8 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
   const [showModal, setShowModal] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
+  const [_selectedTime, setSelectedTime] = useState<string | null>(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -72,6 +74,7 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
   };
 
   const handleTimeSelect = (time: string) => {
+    setSelectedTime(time);
     setFormData(prev => ({ ...prev, appointmentTime: time }));
   };
 
