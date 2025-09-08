@@ -120,9 +120,13 @@ const StepCard: React.FC<StepProps> = ({
       }`}
     ></div>
 
-    <div className={`absolute top-4 right-4 transition-opacity duration-300 ${
+     <div className={`absolute top-4 right-4 transition-opacity duration-300 ${
       isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-100"
     }`}>
+      <ChevronDown 
+        size={20} 
+        className={isDark ? "text-purple-300" : "text-purple-600"} 
+      />
     </div>
   </div>
 );
@@ -601,14 +605,21 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
             Streamline your workflow with our intelligent platform
           </p>
 
-          <p
-            className={`text-base md:text-lg font-medium ${
-              isDark ? "text-purple-400" : "text-purple-600"
-            }`}
-          >
-            Click any card to see detailed workflow breakdown
-          </p>
-         
+       <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="animate-bounce">
+              <ChevronDown size={30} className={isDark ? "text-purple-400" : "text-purple-600"} />
+            </div>
+            <p
+              className={`text-base md:text-lg font-medium ${
+                isDark ? "text-purple-400" : "text-purple-600"
+              }`}
+            >
+              Click any card to see detailed workflow breakdown
+            </p>
+            <div className="animate-bounce" style={{ animationDelay: '0.5s' }}>
+              <ChevronDown size={30} className={isDark ? "text-purple-400" : "text-purple-600"} />
+            </div>
+          </div>
         </div>
 
         {/* Steps Grid - Improved mobile layout */}

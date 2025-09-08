@@ -254,7 +254,7 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
             </span>
           </p>
 
-          {/* Navigation Tabs */}
+      {/* Navigation Tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
             {(Object.keys(products) as Array<keyof typeof products>).map((product) => {
               const isActive = activeTab === product;
@@ -263,25 +263,59 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
                 <button
                   key={product}
                   onClick={() => setActiveTab(product)}
-                  className={`group relative px-6 py-3 rounded-xl font-semibold text-base transition-all duration-500 transform hover:scale-105 ${
+                  className={`group relative px-2 py-3 rounded-xl font-semibold text-base transition-all duration-300 transform hover:scale-105 overflow-hidden ${
                     isActive
                       ? isDark
-                        ? "bg-white/10 backdrop-blur-md text-white shadow-xl border border-white/20"
-                        : "bg-white backdrop-blur-md text-gray-800 shadow-xl border border-gray-200"
+                        ? "bg-gradient-to-r from-slate-800/80 to-slate-700/80 backdrop-blur-md text-white shadow-2xl border border-white/30"
+                        : "bg-gradient-to-r from-white to-gray-50 backdrop-blur-md text-gray-800 shadow-2xl border border-purple-200"
                       : isDark
-                        ? "bg-slate-800/40 backdrop-blur-sm text-slate-300 hover:bg-slate-700/60 hover:text-white border border-slate-700/50"
-                        : "bg-white/70 backdrop-blur-sm text-gray-600 hover:bg-white hover:text-gray-800 border border-gray-200"
+                        ? "bg-slate-800/40 backdrop-blur-sm text-slate-300 hover:bg-slate-700/70 hover:text-white border border-slate-700/50 hover:border-slate-600/60"
+                        : "bg-white/70 backdrop-blur-sm text-gray-600 hover:bg-white hover:text-gray-800 border border-gray-200 hover:border-purple-200"
                   }`}
                 >
+                  {/* Active state background glow */}
                   {isActive && (
+                    <>
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-r ${productData.gradient} opacity-25 transition-opacity duration-300`}
+                      ></div>
+                      <div
+                        className={`absolute -inset-1 bg-gradient-to-r ${productData.gradient} opacity-30 blur-lg transition-opacity duration-300`}
+                      ></div>
+                    </>
+                  )}
+                  
+                  {/* Hover state background for inactive tabs */}
+                  {!isActive && (
                     <div
-                      className={`absolute inset-0 rounded-xl bg-gradient-to-r ${productData.gradient} opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-300`}
+                      className={`absolute inset-0 bg-gradient-to-r ${productData.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
                     ></div>
                   )}
-                  <span className="relative z-10 flex items-center gap-2">
-                    {productData.icon}
+                  
+                  {/* Tab content */}
+                  <span className={`relative z-10 flex items-center gap-2 ${
+                    isActive 
+                      ? isDark
+                        ? "drop-shadow-lg"
+                        : "text-purple-700 font-bold"
+                      : ""
+                  }`}>
+                    <span className={`transition-colors duration-300 ${
+                      isActive 
+                        ? `text-white drop-shadow-md`
+                        : "group-hover:opacity-80"
+                    }`}>
+                      {productData.icon}
+                    </span>
                     {productData.label}
                   </span>
+                  
+                  {/* Active indicator bar */}
+                  {isActive && (
+                    <div
+                      className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${productData.gradient} rounded-b-xl`}
+                    ></div>
+                  )}
                 </button>
               );
             })}

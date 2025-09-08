@@ -20,10 +20,11 @@ const Home: React.FC<HomeProps> = ({ isDark, toggleTheme }) => {
     <>
       <Navbar isDark={isDark}  toggleTheme={toggleTheme}/>
       <Hero isDark={isDark} id="hero" />
-      <FirstSection isDark={isDark} id="first" />
+      <IntegratedProducts isDark={isDark}  id="products" />
       <SecondSection isDark={isDark} id="second" />
       <ProcessSection isDark={isDark} id="process" />
-      <IntegratedProducts isDark={isDark}  id="products" />
+       <FirstSection isDark={isDark} id="first" />
+
       <Security isDark={isDark}  id="security" />
       <CTA  isDark={isDark} id="cta" />
 

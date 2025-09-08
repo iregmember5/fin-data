@@ -9,6 +9,11 @@ import {
   Calendar,
   ChevronLeft,
   ChevronRight,
+  ArrowRight,
+  CreditCard,
+  Crown,
+  Repeat,
+  Users,
   
 } from "lucide-react";
 
@@ -103,32 +108,103 @@ const Hero: React.FC<HeroProps> = ({ isDark, id }) => {
       </div>
 
       <div className="container mx-auto px-4 py-16 md:py-24 text-center relative z-10">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold mb-6 max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Tax Pros: Earn Back Diminishing Trust by Going{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
-            Beyond the Call of Duty
-          </span>
-        </motion.h2>
-        
         <motion.div 
-          className="max-w-2xl mx-auto mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <p className="text-lg md:text-xl mb-6">
-            By becoming our Affiliate partner reduce our platform fees to a zero.... Plus earn a lot more....
-          </p>
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium">
-            <Zap size={18} className="mr-2" />
-            <button>Ask us how?</button>
-          </div>
-        </motion.div>
+  className="max-w-4xl mx-auto mb-12 px-4"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.2 }}
+>
+  {/* Main Headline */}
+  <motion.h1 
+    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    Tax Pros: <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">Reclaim Your Precious Time</span> & Win More Loyal Customers
+  </motion.h1>
+  
+  {/* Subheadline */}
+  <motion.div 
+    className="mb-8 space-y-4 text-lg md:text-xl text-gray-700 dark:text-gray-300"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.1 }}
+  >
+    <div className="flex items-start">
+      <div className="bg-purple-100 dark:bg-purple-900/30 p-2 rounded-full mr-4 mt-1">
+        <Users size={18} className="text-purple-600 dark:text-purple-400" />
+      </div>
+      <p>We help create stickiness and habit forming tactics to build customer loyalty.</p>
+    </div>
+    
+    <div className="flex items-start">
+      <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-full mr-4 mt-1">
+        <Repeat size={18} className="text-blue-600 dark:text-blue-400" />
+      </div>
+      <p>We create reasons for your clients to come back over and over again throughout the year.</p>
+    </div>
+    
+    <div className="flex items-start">
+      <div className="bg-amber-100 dark:bg-amber-900/30 p-2 rounded-full mr-4 mt-1">
+        <Crown size={18} className="text-amber-600 dark:text-amber-400" />
+      </div>
+      <p>We find ways for you to be the hero of the game being orchestrated.</p>
+    </div>
+  </motion.div>
+
+  {/* Key Value Point - Highlighted */}
+  <motion.div 
+    className={`p-6 rounded-2xl mb-8 ${isDark ? "bg-gradient-to-r from-purple-900/50 to-blue-900/50 border border-purple-500/30" : "bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200"} shadow-lg`}
+    initial={{ opacity: 0, scale: 0.95 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, delay: 0.3 }}
+  >
+    <div className="flex items-start">
+      <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-full mr-4">
+        <CreditCard size={20} className="text-white" />
+      </div>
+      <div>
+        <h3 className="text-xl font-bold text-purple-700 dark:text-purple-300 mb-2">Exclusive Credit System</h3>
+        <p className="font-semibold text-lg mb-1">More ways to earn credits on our platform...</p>
+        <p className="text-gray-700 dark:text-gray-300">Thereby enabling you to earn both: <span className="font-bold text-purple-600 dark:text-purple-400">discountable/price deductible credits</span> as well as <span className="font-bold text-blue-600 dark:text-blue-400">refundable credits</span>.</p>
+      </div>
+    </div>
+  </motion.div>
+
+<motion.div 
+  className={`p-6 rounded-2xl mb-8 ${isDark ? "bg-gradient-to-r from-purple-900/50 to-blue-900/50 border border-purple-500/30" : "bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200"} shadow-lg`}
+  initial={{ opacity: 0, scale: 0.95 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.5, delay: 0.35 }}
+>
+  <div className="flex items-start">
+    <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-full mr-4">
+      <Users size={20} className="text-white" />
+    </div>
+    <div>
+      <h3 className="text-xl font-bold text-purple-700 dark:text-purple-300 mb-2">Tax Pros: Earn Back Diminishing Trust by Going Beyond the Call of Duty</h3>
+      <p className="text-gray-700 dark:text-gray-300">By becoming our <span className="font-bold text-purple-600 dark:text-purple-400">Affiliate partner</span> reduce our platform fees to a zero.... Plus <span className="font-bold text-blue-600 dark:text-blue-400">earn a lot more</span>....</p>
+    </div>
+  </div>
+</motion.div>
+
+  {/* CTA Button */}
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.4 }}
+  >
+    <button className="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-bold text-white rounded-full shadow-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transition-all duration-300 ease-out">
+      <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-white/20 to-transparent"></span>
+      <span className="absolute top-0 left-0 w-48 h-48 -mt-1 -ml-12 transition-all duration-500 ease-out transform -translate-x-56 -translate-y-24 rotate-45 bg-white opacity-10 group-hover:-translate-x-56 group-hover:-translate-y-56"></span>
+      <span className="relative flex items-center">
+        <Zap size={20} className="mr-3" fill="currentColor" />
+         Ask Us How 
+      </span>
+    </button>
+  </motion.div>
+</motion.div>
 
         {/* Card Carousel */}
         <motion.div 
@@ -237,45 +313,13 @@ const Hero: React.FC<HeroProps> = ({ isDark, id }) => {
             >
               <ChevronRight size={24} />
             </button>
-            
-            {/* Play/Pause button */}
-            {/* <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              className={`absolute bottom-4 right-4 p-2 rounded-full ${
-                isDark 
-                  ? "bg-purple-700/50 hover:bg-purple-600 text-white" 
-                  : "bg-white/80 hover:bg-white text-purple-700 shadow-md"
-              }`}
-            >
-              {isPlaying ? (
-                <div className="flex items-center">
-                  <div className="w-1 h-3 mx-0.5 bg-current rounded-full"></div>
-                  <div className="w-1 h-3 mx-0.5 bg-current rounded-full"></div>
-                </div>
-              ) : (
-                <Play size={16} className="ml-0.5" />
-              )}
-            </button> */}
+ 
           </div>
         </motion.div>
 
-        {/* CTA Buttons */}
-        <motion.div 
-          className="flex flex-col sm:flex-row justify-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-           <button className={`font-bold py-3 px-6 rounded-lg shadow-md backdrop-blur-md bg-purple-600/80 hover:bg-purple-700 text-white
-          ` }>
-            Apply For Early Access
-          </button>
-          <button className={` font-bold py-3 px-6 border border-purple-400/40 rounded-lg backdrop-blur-md  ${
-            isDark ? "bg-black-500/20 hover:bg-purple-600/30 text-white" : "hover:bg-purple-700 text-purple-600/80 hover:text-white"} ` }>
-            Talk to Us
-          </button>
-        </motion.div>
       </div>
+      {/* Affiliate Partner Section */}
+
 
       {/* Floating elements */}
       <div className="absolute bottom-10 left-10 opacity-50">

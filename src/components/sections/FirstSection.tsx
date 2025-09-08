@@ -1,4 +1,4 @@
-import { CalendarCheck, RollerCoaster, Share2, Wallet } from "lucide-react";
+import { CalendarCheck, RollerCoaster, Share2, Wallet, Zap } from "lucide-react";
 import React from "react";
 
 interface FirstSectionProps {
@@ -10,7 +10,7 @@ const FirstSection: React.FC<FirstSectionProps> = ({ isDark, id }) => {
   return (
     <div
       id={id}
-      className={`min-h-screen p-10 ${
+      className={`min-h-screen p-0 ${
         isDark
           ? "bg-gradient-to-br from-black via-gray-900 to-purple-900/20 text-white"
           : "bg-gradient-to-b from-gray-100 to-white text-gray-900"
@@ -30,18 +30,8 @@ const FirstSection: React.FC<FirstSectionProps> = ({ isDark, id }) => {
         </div>
 
         {/* Key Differentiators */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-16">
           {[
-            {
-              title: "Monthly Recurring Service",
-              subtitle: "Convert yearly tax engagements into steady monthly services.",
-              Question: "Why it matters:",
-              point1: "Add compliance & implementation",
-              point2: "Turn one-time yearly tax prep into monthly recurring revenue",
-              point3: "Build long-term client relationships",
-              footer: "👉 “Turn compliance into continuous value.”",
-              icon: <CalendarCheck/>,
-            },
             {
               title: "Implement Tax Plans",
               subtitle: "Go beyond “just paperwork” — deliver real, actionable results.",
@@ -53,17 +43,37 @@ const FirstSection: React.FC<FirstSectionProps> = ({ isDark, id }) => {
               icon: <RollerCoaster/>,
             },
             {
+              title: "AI-Powered Tax Workflow Made Simple",
+              subtitle: "Assemble, prepare and deliver client documents with simplicity.",
+              Question: "How it helps:",
+              point1: "Smooth out every step from gathering to delivery",
+              point2: "Automated data entry and preparation",
+              point3: "Seamless integration with your existing tools",
+              footer: "👉 Start Simplifying Your Tax Workflow Today",
+              icon: <Zap/>,
+            },
+            {
+              title: "Monthly Recurring Service",
+              subtitle: "Convert yearly tax engagements into steady monthly services.",
+              Question: "Why it matters:",
+              point1: "Add compliance & implementation",
+              point2: "Turn one-time yearly tax prep into monthly recurring revenue",
+              point3: "Build long-term client relationships",
+              footer: "👉 “Turn compliance into continuous value.”",
+              icon: <CalendarCheck/>,
+            },
+            {
               title: "Data Wallets",
-              subtitle: "You already hold your clients’ valuable data—unlock its potential.",
+              subtitle: "You already hold your clients' valuable data—unlock its potential.",
               Question: "With Data Wallets:",
               point1: "Securely store & manage data",
               point2: "Support mortgages, insurance & financial planning",
-              point3: "Create a one-stop hub for clients’ needs",
+              point3: "Create a one-stop hub for clients' needs",
               footer: "👉 “Unlock client data for smarter planning.”",
               icon: <Wallet/>,
             },
             {
-             title: "Advisor Network",
+              title: "Advisor Network",
               subtitle: "Expand your impact by partnering with trusted professionals.",
               Question: "How you help clients:",
               point1: "Join advisor Network with insurance, mortgage & real estate agents, financial planners and attorneys.",
