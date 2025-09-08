@@ -29,6 +29,7 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
 
   // Your Google Apps Script URL
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwknL4h5troWlq8WIUVqCE9M96z_M1I3T6aqSE5UJ0ioPC3Yneu47ThWZUuix7eDcFSbg/exec";
+  
   // Generate time slots (9 AM to 5 PM in 30-minute increments)
   const generateTimeSlots = () => {
     const times = [];
@@ -78,6 +79,35 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
     setFormData(prev => ({ ...prev, appointmentTime: time }));
   };
 
+  const handleMyPowerlyRedirect = () => {
+    window.open('http://mypowerly.com/', '_blank');
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSubmitted(false);
+    setShowCalendar(false);
+    setError("");
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      profiles: "",
+      useCases: [],
+      priorityReason: "",
+      comments: "",
+      agreeToPromotions: false,
+      appointmentDate: "",
+      appointmentTime: "",
+      reminder24h: true,
+      reminder1h: true,
+      reminder30m: false,
+      reminder10m: false
+    });
+    setSelectedDate("");
+    setSelectedTime("");
+  };
+
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setIsLoading(true);
@@ -86,13 +116,13 @@ const handleSubmit = async (e: React.FormEvent) => {
   try {
     // Prepare form data for Google Sheets
     const formDataForSheets = new URLSearchParams();
-    formDataForSheets.append("name", formData.name); // REMOVE ()
-    formDataForSheets.append("email", formData.email); // REMOVE ()
-    formDataForSheets.append("phone", formData.phone); // REMOVE ()
-    formDataForSheets.append("profiles", formData.profiles); // REMOVE ()
+    formDataForSheets.append("name", formData.name);
+    formDataForSheets.append("email", formData.email);
+    formDataForSheets.append("phone", formData.phone);
+    formDataForSheets.append("profiles", formData.profiles);
     formDataForSheets.append("useCases", formData.useCases.join(", "));
-    formDataForSheets.append("priorityReason", formData.priorityReason); // REMOVE ()
-    formDataForSheets.append("comments", formData.comments); // REMOVE ()
+    formDataForSheets.append("priorityReason", formData.priorityReason);
+    formDataForSheets.append("comments", formData.comments);
     formDataForSheets.append("agreeToPromotions", formData.agreeToPromotions ? "Yes" : "No");
     formDataForSheets.append("reminder24h", formData.reminder24h ? "Yes" : "No");
     formDataForSheets.append("reminder1h", formData.reminder1h ? "Yes" : "No");
@@ -101,8 +131,8 @@ const handleSubmit = async (e: React.FormEvent) => {
     
     // Add appointment data if selected
     if (formData.appointmentDate && formData.appointmentTime) {
-      formDataForSheets.append("appointmentDate", formData.appointmentDate); // REMOVE ()
-      formDataForSheets.append("appointmentTime", formData.appointmentTime); // REMOVE ()
+      formDataForSheets.append("appointmentDate", formData.appointmentDate);
+      formDataForSheets.append("appointmentTime", formData.appointmentTime);
     }
     
     const response = await fetch(GOOGLE_SCRIPT_URL, {
@@ -118,31 +148,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         if (result.result === 'success') {
           console.log("Data successfully sent to Google Sheets");
           setSubmitted(true);
-          
-          // Reset form after 3 seconds
-          setTimeout(() => {
-            setSubmitted(false);
-            setShowModal(false);
-            setIsLoading(false);
-            setFormData({
-              name: "",
-              email: "",
-              phone: "",
-              profiles: "",
-              useCases: [],
-              priorityReason: "",
-              comments: "",
-              agreeToPromotions: false,
-              appointmentDate: "",
-              appointmentTime: "",
-              reminder24h: true,
-              reminder1h: true,
-              reminder30m: false,
-              reminder10m: false
-            });
-            setSelectedDate("");
-            setSelectedTime("");
-          }, 3000);
+          setIsLoading(false);
         } else {
           throw new Error(result.error || 'Unknown error');
         }
@@ -196,49 +202,138 @@ const handleSubmit = async (e: React.FormEvent) => {
             : "bg-gradient-to-r from-purple-300/30 via-cyan-300/20 to-purple-400/30"
         }`} />
 
-        <div className="relative max-w-4xl mx-auto text-center px-6">
-          {/* Headline */}
-          <h2 className={`text-3xl md:text-4xl font-bold leading-tight mb-4 ${
-            isDark ? "text-white" : "text-gray-800"
-          }`}>
-            The Future of Tax Workflow —
-            <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
-              isDark 
-                ? "from-cyan-400 to-purple-400" 
-                : "from-cyan-600 to-purple-600"
+        <div className="relative max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
+          {/* Left side with content */}
+          <div className="w-full md:w-3/5 text-center md:text-left">
+            {/* Headline */}
+            <h2 className={`text-3xl md:text-4xl font-bold leading-tight mb-4 ${
+              isDark ? "text-white" : "text-gray-800"
             }`}>
-              powered by AI
-            </span>
-          </h2>
+              The Future of Tax Workflow —
+              <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
+                isDark 
+                  ? "from-cyan-400 to-purple-400" 
+                  : "from-cyan-600 to-purple-600"
+              }`}>
+                powered by AI
+              </span>
+            </h2>
 
-          {/* Subtext */}
-          <p className={`text-base md:text-lg max-w-2xl mx-auto mb-8 ${
-            isDark ? "text-gray-300" : "text-gray-600"
-          }`}>
-            From intake to delivery, myfindata eliminates tedious tasks while
-            keeping your client data safe with industry-leading security.
-          </p>
+            {/* Subtext */}
+            <p className={`text-base md:text-lg max-w-2xl mx-auto md:mx-0 mb-8 ${
+              isDark ? "text-gray-300" : "text-gray-600"
+            }`}>
+              From intake to delivery, myfindata eliminates tedious tasks while
+              keeping your client data safe with industry-leading security.
+            </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button 
-              onClick={() => setShowModal(true)}
-              className={`font-bold py-3 px-6 rounded-lg shadow-md transition flex items-center justify-center gap-2 ${
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
+              <button 
+                onClick={() => setShowModal(true)}
+                className={`font-bold py-3 px-6 rounded-lg shadow-md transition flex items-center justify-center gap-2 ${
+                  isDark
+                    ? "bg-purple-600 hover:bg-purple-700 text-white"
+                    : "bg-purple-600 hover:bg-purple-700 text-white"
+                }`}
+              >
+                <Calendar size={18} />
+                Apply For Early Access
+              </button>
+              <button className={`font-bold py-3 px-6 border rounded-lg transition ${
                 isDark
-                  ? "bg-purple-600 hover:bg-purple-700 text-white"
-                  : "bg-purple-600 hover:bg-purple-700 text-white"
-              }`}
-            >
-              <Calendar size={18} />
-              Apply For Early Access
-            </button>
-            <button className={`font-bold py-3 px-6 border rounded-lg transition ${
-              isDark
-                ? "bg-transparent hover:bg-gray-700 text-white border-white/40"
-                : "bg-transparent hover:bg-purple-100 text-purple-700 border-purple-400/60"
-            }`}>
-              Talk to Us
-            </button>
+                  ? "bg-transparent hover:bg-gray-700 text-white border-white/40"
+                  : "bg-transparent hover:bg-purple-100 text-purple-700 border-purple-400/60"
+              }`}>
+                Talk to Us
+              </button>
+            </div>
+          </div>
+
+          {/* Right side with calendar */}
+          <div className="w-full md:w-2/5">
+            <div className={`p-6 rounded-2xl shadow-lg ${isDark ? "bg-gray-800" : "bg-white"}`}>
+              <h3 className={`text-xl font-bold mb-4 flex items-center gap-2 ${isDark ? "text-white" : "text-gray-800"}`}>
+                <Calendar className="text-purple-500" size={24} />
+                Schedule a Demo
+              </h3>
+              <p className={`text-sm mb-4 ${isDark ? "text-gray-300" : "text-gray-600"}`}>
+                Select a date and time for a personalized demo
+              </p>
+              
+              {/* Calendar Date Picker */}
+              <div className="mb-4">
+                <h4 className={`font-medium mb-3 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>Available Dates (Weekdays Only)</h4>
+                <div className="grid grid-cols-3 gap-2 max-h-50 overflow-y-auto">
+                  {availableDates.map(date => (
+                    <button
+                      key={date}
+                      type="button"
+                      onClick={() => {
+                        handleDateSelect(date);
+                        setShowModal(true);
+                      }}
+                      className={`py-2 px-3 rounded text-sm transition ${
+                        selectedDate === date
+                          ? "bg-purple-600 text-white"
+                          : isDark
+                            ? "bg-gray-700 hover:bg-gray-600 text-white"
+                            : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                      }`}
+                    >
+                      {new Date(date).toLocaleDateString('en-US', { 
+                        weekday: 'short',
+                        month: 'short', 
+                        day: 'numeric' 
+                      })}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Time Slot Selector */}
+              {selectedDate && (
+                <div className="mb-4">
+                  <h4 className={`font-medium mb-2 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>Select Time</h4>
+                  <select
+                    value={formData.appointmentTime}
+                    onChange={(e) => handleTimeSelect(e.target.value)}
+                    className={`w-full py-2 px-3 rounded-lg border text-sm ${
+                      isDark 
+                        ? "bg-gray-700 border-gray-600 text-white" 
+                        : "bg-white border-gray-300 text-gray-900"
+                    }`}
+                  >
+                    <option value="">Select a time</option>
+                    {timeSlots.map(time => (
+                      <option key={time} value={time}>
+                        {new Date(`2000-01-01T${time}`).toLocaleTimeString('en-US', {
+                          hour: 'numeric',
+                          minute: '2-digit',
+                          hour12: true
+                        })}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+              
+              <button 
+                onClick={() => setShowModal(true)}
+                className={`w-full py-2 px-4 rounded-lg font-medium flex items-center justify-center gap-2 ${
+                  isDark
+                    ? "bg-purple-600 hover:bg-purple-700 text-white"
+                    : "bg-purple-600 hover:bg-purple-700 text-white"
+                }`}
+              >
+                <Calendar size={16} />
+                Schedule Demo
+              </button>
+              
+              <p className={`text-xs mt-3 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                All appointments are 45 minutes and include a live demo + Q&A
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -251,11 +346,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           }`}>
             {/* Close Button */}
             <button 
-              onClick={() => {
-                setShowModal(false);
-                setShowCalendar(false);
-                setError("");
-              }}
+              onClick={handleCloseModal}
               className={`absolute top-4 right-4 rounded-full p-2 z-10 ${
                 isDark ? "hover:bg-gray-800" : "hover:bg-gray-100"
               }`}
@@ -270,6 +361,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Application Submitted!</h3>
                 <p className="mb-6">Thank you for your interest. We'll be in touch soon with your early access details.</p>
+                
                 {formData.appointmentDate && (
                   <div className={`p-4 rounded-lg mb-6 ${isDark ? "bg-gray-800" : "bg-blue-50"}`}>
                     <h4 className="font-semibold mb-2 flex items-center justify-center gap-2">
@@ -283,12 +375,33 @@ const handleSubmit = async (e: React.FormEvent) => {
                     </p>
                   </div>
                 )}
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="px-6 py-2 rounded-lg font-medium bg-purple-600 hover:bg-purple-700 text-white"
-                >
-                  Close
-                </button>
+
+                {/* MyPowerly Account Option */}
+                <div className={`p-4 rounded-lg mb-6 border-2 border-dashed ${
+                  isDark ? "bg-gray-800 border-gray-600" : "bg-purple-50 border-purple-300"
+                }`}>
+                  <p className="mb-4 text-sm">
+                    Would you like to create an account on MyPowerly.com?
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <button
+                      onClick={handleMyPowerlyRedirect}
+                      className="px-6 py-2 rounded-lg font-medium bg-purple-600 hover:bg-purple-700 text-white transition"
+                    >
+                      Yes, Create Account
+                    </button>
+                    <button
+                      onClick={handleCloseModal}
+                      className={`px-6 py-2 rounded-lg font-medium transition ${
+                        isDark 
+                          ? "bg-gray-700 hover:bg-gray-600 text-white" 
+                          : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+                      }`}
+                    >
+                      No, Thanks
+                    </button>
+                  </div>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="p-6 md:p-8">
