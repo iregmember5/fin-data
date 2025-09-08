@@ -5,7 +5,7 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
   const [showModal, setShowModal] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
-  const [setSelectedTime] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -77,40 +77,40 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
     setFormData(prev => ({ ...prev, appointmentTime: time }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError("");
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsLoading(true);
+  setError("");
+  
+  try {
+    // Prepare form data for Google Sheets
+    const formDataForSheets = new URLSearchParams();
+    formDataForSheets.append("name", formData.name); // REMOVE ()
+    formDataForSheets.append("email", formData.email); // REMOVE ()
+    formDataForSheets.append("phone", formData.phone); // REMOVE ()
+    formDataForSheets.append("profiles", formData.profiles); // REMOVE ()
+    formDataForSheets.append("useCases", formData.useCases.join(", "));
+    formDataForSheets.append("priorityReason", formData.priorityReason); // REMOVE ()
+    formDataForSheets.append("comments", formData.comments); // REMOVE ()
+    formDataForSheets.append("agreeToPromotions", formData.agreeToPromotions ? "Yes" : "No");
+    formDataForSheets.append("reminder24h", formData.reminder24h ? "Yes" : "No");
+    formDataForSheets.append("reminder1h", formData.reminder1h ? "Yes" : "No");
+    formDataForSheets.append("reminder30m", formData.reminder30m ? "Yes" : "No");
+    formDataForSheets.append("reminder10m", formData.reminder10m ? "Yes" : "No");
     
-    try {
-      // Prepare form data for Google Sheets
-      const formDataForSheets = new URLSearchParams();
-      formDataForSheets.append("name", formData.name);
-      formDataForSheets.append("email", formData.email);
-      formDataForSheets.append("phone", formData.phone);
-      formDataForSheets.append("profiles", formData.profiles);
-      formDataForSheets.append("useCases", formData.useCases.join(", "));
-      formDataForSheets.append("priorityReason", formData.priorityReason);
-      formDataForSheets.append("comments", formData.comments);
-      formDataForSheets.append("agreeToPromotions", formData.agreeToPromotions ? "Yes" : "No");
-      formDataForSheets.append("reminder24h", formData.reminder24h ? "Yes" : "No");
-      formDataForSheets.append("reminder1h", formData.reminder1h ? "Yes" : "No");
-      formDataForSheets.append("reminder30m", formData.reminder30m ? "Yes" : "No");
-      formDataForSheets.append("reminder10m", formData.reminder10m ? "Yes" : "No");
-      
-      // Add appointment data if selected
-      if (formData.appointmentDate && formData.appointmentTime) {
-        formDataForSheets.append("appointmentDate", formData.appointmentDate);
-        formDataForSheets.append("appointmentTime", formData.appointmentTime);
-      }
-      
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formDataForSheets.toString()
-      });
+    // Add appointment data if selected
+    if (formData.appointmentDate && formData.appointmentTime) {
+      formDataForSheets.append("appointmentDate", formData.appointmentDate); // REMOVE ()
+      formDataForSheets.append("appointmentTime", formData.appointmentTime); // REMOVE ()
+    }
+    
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formDataForSheets.toString()
+    });
       
       if (response.ok) {
         const result = await response.json();
