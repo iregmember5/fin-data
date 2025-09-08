@@ -9,14 +9,22 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
+    <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b shadow-lg ${
+      isDark 
+        ? "bg-black/40 border-white/10" 
+        : "bg-white/90 border-gray-200/50"
+    }`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo + Brand */}
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-500 via-fuchsia-500 to-cyan-400">
             <Rocket className="h-5 w-5 text-white" />
           </div>
-          <span className="text-lg font-bold tracking-tight">myfindata</span>
+          <span className={`text-lg font-bold tracking-tight ${
+            isDark ? "text-white" : "text-gray-900"
+          }`}>
+            myfindata
+          </span>
         </div>
 
         {/* Nav Links */}
@@ -28,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
             ["How It Works", "process"],
             ["Products", "products"],
             ["Security", "security"],
-            ["CTA", "cta"],
+            ["Apply for Early Access", "cta"],
           ].map(([label, target]) => (
             <ScrollLink
               key={label}
@@ -36,10 +44,10 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
               smooth={true}
               duration={600}
               offset={-80} // offset for navbar height
-              className={`cursor-pointer text-sm transition-colors ${
+              className={`cursor-pointer text-md font-medium transition-colors ${
                 isDark
-                  ? "text-white/70 hover:text-white"
-                  : "text-gray-600 hover:text-gray-900"
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-800 hover:text-purple-600"
               }`}
             >
               {label}
@@ -54,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
             className={`p-2 rounded-lg transition-colors ${
               isDark
                 ? "bg-gray-700 hover:bg-gray-600 text-yellow-300"
-                : "bg-gray-200 hover:bg-gray-300 text-indigo-700"
+                : "bg-gray-100 hover:bg-gray-200 text-gray-700"
             }`}
             aria-label="Toggle theme"
           >
