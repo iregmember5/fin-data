@@ -9,7 +9,6 @@ import {
   Calendar,
   ChevronLeft,
   ChevronRight,
-  ArrowRight,
   CreditCard,
   Crown,
   Repeat,
