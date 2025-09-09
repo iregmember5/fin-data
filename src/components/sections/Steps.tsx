@@ -684,12 +684,27 @@ wallets: {
             </div>
           ))}
         </div>
-        {/* Currently showing indicator - add this after the instruction text and before the Steps Grid */}
+        {/* Mobile-responsive step indicator */}
 {selectedStep && (
-  <div className="flex justify-center items-center gap-4 mb-8">
-    {/* Left arrow */}
-    <div className="flex items-center gap-2 ">
-      <ChevronUp className={`w-8 h-8 rotate-180 animate-bounce ${
+  <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4">
+    {/* Mobile: Top arrows, Desktop: Left arrow */}
+    <div className="flex sm:hidden items-center gap-2 order-1">
+      <ChevronUp className={`w-6 h-6 rotate-180 animate-bounce ${
+        isDark ? "text-cyan-400" : "text-purple-600"
+      }`} />
+      <span className={`text-xs font-medium ${
+        isDark ? "text-cyan-400" : "text-purple-600"
+      }`}>
+        Switch
+      </span>
+      <ChevronUp className={`w-6 h-6 animate-bounce ${
+        isDark ? "text-cyan-400" : "text-purple-600"
+      }`} />
+    </div>
+
+    {/* Desktop: Left arrow */}
+    <div className="hidden sm:flex items-center gap-2">
+      <ChevronUp className={`w-7 h-7 rotate-180 animate-bounce ${
         isDark ? "text-cyan-400" : "text-purple-600"
       }`} />
       <span className={`text-sm font-medium ${
@@ -699,48 +714,64 @@ wallets: {
       </span>
     </div>
 
-    {/* Current step indicator */}
-    <div className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-500 relative overflow-hidden ${
+    {/* Current step indicator - responsive */}
+    <div className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-2xl text-xs sm:text-sm font-medium transition-all duration-500 relative overflow-hidden max-w-xs sm:max-w-none ${
       isDark 
-        ? "bg-slate-800/90 border border-slate-600/60 shadow-xl" 
-        : "bg-white/95 border border-purple-200/80 shadow-xl"
+        ? "bg-slate-800/95 border border-slate-600/60 shadow-lg sm:shadow-xl" 
+        : "bg-white/95 border border-purple-200/80 shadow-lg sm:shadow-xl"
     }`}>
       {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-800 opacity-20"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-800 opacity-15 sm:opacity-20"></div>
       
-      <span className="relative flex items-center gap-3">
-        <div className={`w-2 h-2 rounded-full animate-pulse ${
-          isDark ? "bg-cyan-400" : "bg-purple-500"
-        }`}></div>
-        <span className={`font-semibold ${
-          isDark ? "text-white" : "text-gray-800"
-        }`}>
-          Currently Showing:
-        </span>
-        <span className={`font-bold ${
+      <div className="relative flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+        {/* Mobile: Stacked layout */}
+        <div className="flex sm:hidden items-center gap-2 w-full justify-center">
+          <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full animate-pulse ${
+            isDark ? "bg-cyan-400" : "bg-purple-500"
+          }`}></div>
+          <span className={`font-semibold text-center ${
+            isDark ? "text-white" : "text-gray-800"
+          }`}>
+            Currently Showing
+          </span>
+        </div>
+        
+        {/* Step title - truncated on mobile */}
+        <span className={`font-bold text-center sm:text-left truncate max-w-full ${
           isDark 
             ? "text-cyan-300" 
             : "bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
         }`}>
           {steps.find(step => step.key === selectedStep)?.title}
         </span>
-      </span>
+
+        {/* Desktop: Inline layout */}
+        <div className="hidden sm:flex items-center gap-3">
+          <div className={`w-2 h-2 rounded-full animate-pulse ${
+            isDark ? "bg-cyan-400" : "bg-purple-500"
+          }`}></div>
+          <span className={`font-semibold ${
+            isDark ? "text-white" : "text-gray-800"
+          }`}>
+            Currently Showing:
+          </span>
+        </div>
+      </div>
     </div>
 
-    {/* Right arrow */}
-    <div className="flex items-center gap-2 ">
-        <span className={`text-sm font-medium ${
+    {/* Desktop: Right arrow */}
+    <div className="hidden sm:flex items-center gap-2">
+      <span className={`text-sm font-medium ${
         isDark ? "text-cyan-400" : "text-purple-600"
       }`}>
         Switch Step
       </span>
-      <ChevronUp className={`w-8 h-8 animate-bounce ${
+      <ChevronUp className={`w-7 h-7 animate-bounce ${
         isDark ? "text-cyan-400" : "text-purple-600"
       }`} />
     </div>
   </div>
 )}
-
         {/* Detail Section with ref for scrolling */}
         <div ref={detailSectionRef}>
           {selectedStep && stepDetails[selectedStep as keyof typeof stepDetails] && (
