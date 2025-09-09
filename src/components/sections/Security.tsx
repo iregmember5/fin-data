@@ -1,5 +1,5 @@
 import React from "react";
-import { Crown, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 
 const Security: React.FC<{isDark: boolean, id?: string }> = ({ isDark, id }) => {
   return (

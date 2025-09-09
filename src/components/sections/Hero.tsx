@@ -10,7 +10,6 @@ import {
   ChevronLeft,
   ChevronRight,
   CreditCard,
-  Crown,
   Repeat,
   Users,
   
