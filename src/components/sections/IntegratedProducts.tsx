@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { FileText, Send, Database, RollerCoaster, Wallet, LockKeyholeOpen } from "lucide-react";
-import AnimatedBackground from "../ui/AnimatedBackground";
+import { FileText, Send, Database, RollerCoaster, Wallet, LockKeyholeOpen, ChevronDown, ChevronUp, } from "lucide-react";
+
+const AnimatedBackground = () => (
+  <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-400/5 rounded-full animate-pulse blur-3xl"></div>
+    <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-purple-400/5 rounded-full animate-pulse delay-1000 blur-3xl"></div>
+    <div className="absolute top-2/3 left-1/2 w-72 h-72 bg-cyan-400/5 rounded-full animate-pulse delay-2000 blur-3xl"></div>
+  </div>
+);
 
 const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
   const [activeTab, setActiveTab] = useState("TaxPlanImplementation");
@@ -8,7 +15,7 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
   const products = {
      TaxPlanImplementation: {
       label: "Implement Tax Plans",
-      title: "From Strategy to Execution — Proactive Tax Plan Implementation You Can Trust.”",
+      title: "From Strategy to Execution — Proactive Tax Plan Implementation You Can Trust.",
       subtitle:
         "Turning Strategy into Action with Precision and Compliance",
       features: [
@@ -241,7 +248,7 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
             }`}></div>
           </h1>
 
-          <p className={`text-lg md:text-xl mb-12 font-light tracking-wide ${
+          <p className={`text-lg md:text-xl mb-6 font-light tracking-wide ${
             isDark ? "text-slate-300" : "text-gray-600"
           }`}>
             Delivering a frictionless client journey, powered by{" "}
@@ -254,7 +261,29 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
             </span>
           </p>
 
-      {/* Navigation Tabs */}
+          {/* Interactive instruction with animated pointer */}
+          <div className="flex items-center justify-center gap-3 mb-8 ">
+            <ChevronDown className={`w-8 h-8 animate-bounce delay-0.5s ${
+              isDark ? "text-cyan-400" : "text-cyan-600"
+            }`} />
+            <p className={`text-lg font-medium ${
+              isDark 
+                ? "text-cyan-300" 
+                : "text-cyan-700"
+            }`}>
+              Click any tab below to explore our services
+            </p>
+               <ChevronDown className={`w-8 h-8 animate-bounce ${
+              isDark ? "text-cyan-400" : "text-cyan-600"
+            }`} />
+            <p className={`text-lg font-medium ${
+              isDark 
+                ? "text-cyan-300" 
+                : "text-cyan-700"
+            }`}></p>
+          </div>
+
+      {/* Enhanced Navigation Tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
             {(Object.keys(products) as Array<keyof typeof products>).map((product) => {
               const isActive = activeTab === product;
@@ -263,80 +292,143 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
                 <button
                   key={product}
                   onClick={() => setActiveTab(product)}
-                  className={`group relative px-2 py-3 rounded-xl font-semibold text-base transition-all duration-300 transform hover:scale-105 overflow-hidden ${
+                  className={`group relative px-4 py-3 rounded-xl font-semibold text-base transition-all duration-500 transform hover:scale-110 active:scale-95 overflow-hidden cursor-pointer select-none ${
                     isActive
                       ? isDark
-                        ? "bg-gradient-to-r from-slate-800/80 to-slate-700/80 backdrop-blur-md text-white shadow-2xl border border-white/30"
-                        : "bg-gradient-to-r from-white to-gray-50 backdrop-blur-md text-gray-800 shadow-2xl border border-purple-200"
+                        ? "bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-md text-white shadow-2xl border-2 border-white/40 "
+                        : "bg-gradient-to-r from-white to-gray-50 backdrop-blur-md text-gray-800 shadow-2xl border-2 border-purple-300 "
                       : isDark
-                        ? "bg-slate-800/40 backdrop-blur-sm text-slate-300 hover:bg-slate-700/70 hover:text-white border border-slate-700/50 hover:border-slate-600/60"
-                        : "bg-white/70 backdrop-blur-sm text-gray-600 hover:bg-white hover:text-gray-800 border border-gray-200 hover:border-purple-200"
+                        ? "bg-slate-800/50 backdrop-blur-sm text-slate-300 hover:bg-slate-700/80 hover:text-white border-2 border-slate-700/60 hover:border-slate-500/80 hover:shadow-lg"
+                        : "bg-white/80 backdrop-blur-sm text-gray-600 hover:bg-white hover:text-gray-800 border-2 border-gray-200/60 hover:border-purple-300/80 hover:shadow-lg"
                   }`}
                 >
-                  {/* Active state background glow */}
+                  {/* Animated background shimmer effect */}
+                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                    isActive ? 'animate-pulse' : ''
+                  }`}>
+                    <div className={`absolute inset-0 bg-gradient-to-r ${productData.gradient} opacity-20 animate-shimmer`}></div>
+                  </div>
+
+                  {/* Active state background glow with pulsing */}
                   {isActive && (
                     <>
                       <div
-                        className={`absolute inset-0 bg-gradient-to-r ${productData.gradient} opacity-25 transition-opacity duration-300`}
+                        className={`absolute inset-0 bg-gradient-to-r ${productData.gradient} opacity-30 transition-opacity duration-300 animate-pulse`}
                       ></div>
                       <div
-                        className={`absolute -inset-1 bg-gradient-to-r ${productData.gradient} opacity-30 blur-lg transition-opacity duration-300`}
+                        className={`absolute -inset-2 bg-gradient-to-r ${productData.gradient} opacity-40 blur-lg transition-opacity duration-300 animate-pulse`}
                       ></div>
                     </>
                   )}
                   
-                  {/* Hover state background for inactive tabs */}
+                  {/* Hover state background for inactive tabs with pulse */}
                   {!isActive && (
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-r ${productData.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-                    ></div>
+                    <>
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-r ${productData.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                      ></div>
+                      <div
+                        className={`absolute -inset-1 bg-gradient-to-r ${productData.gradient} opacity-0 group-hover:opacity-25 blur-md transition-opacity duration-300`}
+                      ></div>
+                    </>
                   )}
                   
-                  {/* Tab content */}
-                  <span className={`relative z-10 flex items-center gap-2 ${
+                  {/* Tab content with enhanced animations */}
+                  <span className={`relative z-10 flex items-center gap-2 transition-transform duration-300 ${
                     isActive 
                       ? isDark
-                        ? "drop-shadow-lg"
-                        : "text-purple-700 font-bold"
-                      : ""
+                        ? "drop-shadow-lg transform"
+                        : "text-purple-700 font-bold transform"
+                      : "group-hover:transform group-hover:translate-y-[-1px]"
                   }`}>
-                    <span className={`transition-colors duration-300 ${
+                    <span className={`transition-all duration-300 ${
                       isActive 
-                        ? `text-white drop-shadow-md`
-                        : "group-hover:opacity-80"
+                        ? `text-white drop-shadow-md `
+                        : "group-hover:opacity-80 group-hover:rotate-3"
                     }`}>
                       {productData.icon}
                     </span>
-                    {productData.label}
+                    <span className="transition-all duration-300 group-hover:tracking-wide">
+                      {productData.label}
+                    </span>
                   </span>
                   
-                  {/* Active indicator bar */}
+                  {/* Active indicator bar with pulse */}
                   {isActive && (
                     <div
-                      className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${productData.gradient} rounded-b-xl`}
+                      className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${productData.gradient} rounded-b-xl animate-pulse`}
                     ></div>
                   )}
+
+                  {/* Click ripple effect */}
+                  <div className="absolute inset-0 overflow-hidden rounded-xl">
+                    <div className={`absolute inset-0 bg-gradient-to-r ${productData.gradient} opacity-0 group-active:opacity-30 transform scale-0 group-active:scale-100 transition-all duration-200 rounded-xl`}></div>
+                  </div>
                 </button>
               );
             })}
           </div>
-        </div>
+<div className="flex justify-center items-center gap-4 mb-8">
+            {/* Left arrow */}
+            <div className="flex items-center gap-2 ">
+                 <span className={`text-sm font-medium ${
+        isDark ? "text-cyan-400" : "text-cyan-600"
+      }`}>
+                Switch Tab
+              </span>
+              <ChevronUp className={`w-8 h-8 animate-bounce ${
+                isDark ? "text-cyan-400" : "text-cyan-600"
+              }`} />
+            </div>
 
-        {/* Main Content */}
+            {/* Current tab indicator */}
+            <div className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-500 relative overflow-hidden ${
+              isDark 
+                ? "bg-slate-800/80 text-slate-200 border border-slate-600/50 shadow-lg" 
+                : "bg-white/90 text-gray-700 border border-gray-200/50 shadow-lg"
+            }`}>
+              {/* Animated background */}
+              <div className={`absolute inset-0 bg-gradient-to-r ${currentProduct.gradient} opacity-20 `}></div>
+              
+              <span className="relative flex items-center gap-3">
+                <div className={`w-2 h-2 rounded-full animate-pulse ${
+                  isDark ? "bg-cyan-400" : "bg-cyan-600"
+                }`}></div>
+                <span className="font-semibold">Currently Showing:</span>
+                <span className={`font-bold bg-gradient-to-r ${currentProduct.gradient} bg-clip-text text-transparent`}>
+                  {currentProduct.label}
+                </span>
+              </span>
+            </div>
+
+            {/* Right arrow */}
+             <div className="flex items-center gap-2 ">
+                 <span className={`text-sm font-medium ${
+        isDark ? "text-cyan-400" : "text-cyan-600"
+      }`}>
+                Switch Tab
+              </span>
+              <ChevronUp className={`w-8 h-8 animate-bounce ${
+                isDark ? "text-cyan-400" : "text-cyan-600"
+              }`} />
+            </div>
+          </div>
+</div>
+        {/* Main Content with enhanced animations */}
         <div className="max-w-5xl mx-auto px-6 pb-16">
           <div className="relative group">
             <div
-              className={`absolute -inset-3 bg-gradient-to-r ${currentProduct.gradient} rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-700`}
+              className={`absolute -inset-3 bg-gradient-to-r ${currentProduct.gradient} rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-700 animate-pulse`}
             ></div>
 
-            {/* Main card */}
-            <div className={`relative backdrop-blur-xl rounded-2xl p-6 md:p-8 border shadow-xl hover:scale-[1.01] transition-transform duration-300 ${
+            {/* Main card with enhanced entrance animation */}
+            <div className={`relative backdrop-blur-xl rounded-2xl p-6 md:p-8 border shadow-xl hover:scale-[1.01] transition-all duration-500 animate-fade-in ${
               isDark 
                 ? "bg-slate-900/80 border-slate-700/50" 
                 : "bg-white/90 border-gray-200/50"
             }`}>
               <div
-                className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${currentProduct.gradient} p-[1px] opacity-40`}
+                className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${currentProduct.gradient} p-[1px] opacity-40 animate-pulse`}
               >
                 <div className={`rounded-2xl w-full h-full ${
                   isDark ? "bg-slate-900/90" : "bg-white/90"
@@ -344,14 +436,14 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
               </div>
 
               <div className="relative z-10">
-                {/* Icon & Title */}
+                {/* Icon & Title with enhanced animations */}
                 <div className="flex flex-col md:flex-row md:items-center gap-3 mb-6">
                   <div
-                    className={`p-3 rounded-xl bg-gradient-to-r ${currentProduct.gradient} w-fit`}
+                    className={`p-3 rounded-xl bg-gradient-to-r ${currentProduct.gradient} w-fit animate-bounce-slow`}
                   >
                     {currentProduct.icon}
                   </div>
-                  <h2 className={`text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent ${
+                  <h2 className={`text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent transition-all duration-500 ${
                     isDark 
                       ? "from-white to-slate-300" 
                       : "from-gray-800 to-gray-700"
@@ -360,27 +452,28 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
                   </h2>
                 </div>
 
-                <p className={`mb-6 text-lg leading-snug font-light ${
+                <p className={`mb-6 text-lg leading-snug font-light transition-all duration-500 ${
                   isDark ? "text-slate-300" : "text-gray-600"
                 }`}>
                   {currentProduct.subtitle}
                 </p>
 
-                {/* Features Grid */}
+                {/* Features Grid with staggered animations */}
                 <div className="grid gap-4 mb-6">
                   {currentProduct.features.map((feature: string, idx: any) => (
                     <div
                       key={idx}
-                      className={`group flex items-start gap-3 p-3 rounded-lg backdrop-blur-sm border transition-all ${
+                      className={`group flex items-start gap-3 p-3 rounded-lg backdrop-blur-sm border transition-all duration-300 hover:transform hover:translate-x-2 ${
                         isDark
                           ? "bg-slate-800/40 border-slate-700/30 hover:bg-slate-800/60"
                           : "bg-white/70 border-gray-200/50 hover:bg-white"
                       }`}
+                      style={{ animationDelay: `${idx * 100}ms` }}
                     >
                       <div
-                        className={`w-2.5 h-2.5 rounded-full bg-gradient-to-r ${currentProduct.gradient} mt-2`}
+                        className={`w-2.5 h-2.5 rounded-full bg-gradient-to-r ${currentProduct.gradient} mt-2 transition-transform duration-300 group-hover:scale-125`}
                       ></div>
-                      <span className={`text-base leading-snug flex-1 ${
+                      <span className={`text-base leading-snug flex-1 transition-all duration-300 ${
                         isDark ? "text-slate-200" : "text-gray-700"
                       }`}>
                         {feature}
@@ -389,8 +482,8 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
                   ))}
                 </div>
 
-                {/* Benefit */}
-                <div className={`p-4 rounded-xl backdrop-blur-sm border mb-6 ${
+                {/* Benefit with enhanced styling */}
+                <div className={`p-4 rounded-xl backdrop-blur-sm border mb-6 transition-all duration-300 hover:scale-[1.02] ${
                   isDark
                     ? "bg-gradient-to-r from-slate-800/60 to-slate-700/60 border-slate-600/50"
                     : "bg-gradient-to-r from-white/80 to-gray-100/80 border-gray-200/50"
@@ -403,12 +496,12 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
                 </div>
 
                 {/* Question and Points Section */}
-                <div className={`p-4 rounded-xl backdrop-blur-sm border ${
+                <div className={`p-4 rounded-xl backdrop-blur-sm border transition-all duration-300 hover:scale-[1.01] ${
                   isDark
                     ? "bg-slate-800/40 border-slate-700/50"
                     : "bg-white/70 border-gray-200/50"
                 }`}>
-                  <h3 className={`text-lg font-semibold mb-3 ${
+                  <h3 className={`text-lg font-semibold mb-3 transition-all duration-300 ${
                     isDark ? "text-cyan-300" : "text-cyan-600"
                   }`}>
                     {currentProduct.question}
@@ -416,11 +509,11 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
                   
                   <div className="space-y-2">
                     {currentProduct.points.map((point: string, idx: any) => (
-                      <div key={idx} className="flex items-start gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${
+                      <div key={idx} className="flex items-start gap-2 group transition-all duration-300 hover:translate-x-1">
+                        <div className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 transition-transform duration-300 group-hover:scale-125 ${
                           isDark ? "bg-cyan-400" : "bg-cyan-500"
                         }`}></div>
-                        <p className={`text-sm ${isDark ? "text-slate-300" : "text-gray-600"}`}>
+                        <p className={`text-sm transition-all duration-300 ${isDark ? "text-slate-300" : "text-gray-600"}`}>
                           {point}
                         </p>
                       </div>
@@ -432,6 +525,8 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
           </div>
         </div>
       </div>
+
+    
     </div>
   );
 };

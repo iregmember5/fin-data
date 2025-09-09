@@ -13,7 +13,8 @@ import {
   Mail,
   CreditCard,
   Eye,
-  ChevronDown
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 
 interface StepProps {
@@ -421,11 +422,27 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
           description: "Tax returns are automatically compiled and delivered in 3–4 minutes, complete with all supporting documents. AI-powered assembly ensures accuracy and completeness before delivery.",
           icon: <Clock size={20} />
         },
-        {
+      
+
+         {
+      title: "Magic Setup++",
+      description: "Simple, guided onboarding that allows clients to get started in minutes, without technical headaches. Intuitive setup process removes barriers and ensures immediate productivity.",
+      icon: <Zap size={20} />
+    },
+
+
+    {
+      title: "Enhanced KBA Security",
+      description: "Our system automatically generates Knowledge-Based Authentication (KBA) questions directly from the client's tax return data—ensuring they are accurate, relevant, and easy for clients to answer. Unlike costly credit-reporting services, our AI creates personalized, context-aware questions.",
+      icon: <LockKeyholeOpen size={20} />
+    },
+
+      {
           title: "Invoices & Billing",
           description: "Generate client invoices for tax preparation fees instantly. Clients can review, eSign, and pay directly from the dashboard. Integrated payment processing with multiple payment options.",
           icon: <CreditCard size={20} />
         },
+
         {
           title: "Automated Reminders",
           description: "Clients receive email/SMS notifications for payments, signatures, and outstanding tasks. Smart reminder sequences adapt based on client response patterns and preferences.",
@@ -445,59 +462,82 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
           title: "Complete Tracking Dashboard",
           description: "Both firms and clients get a real-time overview: Returns delivered & signed, Payments received & pending, Document status (view/download/forward), Clear summary of federal, state, and total taxes due.",
           icon: <Eye size={20} />
-        }
+        },
+            {
+      title: "Cost-Effective & Supportive",
+      description: "If clients encounter issues, they can instantly join a live conference call with transcription, translation, and AI-powered assistance, ensuring smooth communication and faster resolutions.",
+      icon: <Users size={20} />
+    }
       ],
       screenshots: [
+
+
         "/images/screenshots/deliver/return-deliver.png",
+
+           "/images/screenshots/deliver/magic-setup.png",
+    "/images/screenshots/deliver/kba-security.png",
+
         "/images/screenshots/deliver/invoice-billing.png", 
         "/images/screenshots/assemble/reminder-system.png",
         "/images/screenshots/deliver/esignatures.png",
         "/images/screenshots/deliver/ai-calculations.png",
-        "/images/screenshots/deliver/tracking-dashboard.png"
+        "/images/screenshots/deliver/tracking-dashboard.png",
+        "/images/screenshots/deliver/live-support.png"
       ]
     },
-    wallets: {
-      title: "Family Data Wallets - Secure Financial Management",
+wallets: {
+      title: "Data Wallets for Family Office - Complete Financial Ecosystem",
       steps: [
         {
-          title: "Collect",
-          description: "Upload and centralize all financial records into a secure digital wallet.",
+          title: "Collect & Upload",
+          description: "Clients securely upload their financial artifacts — tax returns, K-1s, wills, insurance policies, mortgage papers, investment records, and more. AI auto-sorts and tags documents for easy organization.",
           icon: <Upload size={20} />
         },
         {
-          title: "Organize",
-          description: "Documents are structured, categorized, and easy to access anytime.",
-          icon: <FileText size={20} />
+          title: "Organize & Protect",
+          description: "The system creates a centralized, encrypted wallet where every document is categorized and safely stored. Role-based permissions ensure only authorized users can access sensitive financial data.",
+          icon: <LockKeyholeOpen size={20} />
         },
         {
-          title: "Share",
-          description: "Grant pre-authorized access to advisors, attorneys, or family — only to the right people.",
+          title: "Share with Confidence",
+          description: "Clients can grant pre-authorized access to attorneys, advisors, or family members with time-limited links, view-only or download options, and Full audit trail of who accessed what and when",
           icon: <Users size={20} />
         },
         {
-          title: "Optimize",
-          description: "Compare expenses, evaluate vendors, and unlock smarter financial decisions.",
-          icon: <Zap size={20} />
+          title: "Compare & Save",
+          description: "Clients upload current bills (insurance, loans, utilities, etc.). The wallet's smart comparison engine highlights potential savings from alternate vendors and solutions.",
+          icon: <Eye size={20} />
+        },
+        {
+          title: "Access Anytime, Anywhere",
+          description: "From a web dashboard or mobile app, clients and their trusted circle can view & download key documents, track renewals & deadlines, and receive reminders and notifications.",
+          icon: <DatabaseZap size={20} />
+        },
+        {
+          title: "Ongoing Trust & Support",
+          description: "AI-powered search capabilities, live support with transcription & translation, and regular reports showing savings, updates, and security status.",
         }
       ],
       screenshots: [
-        "/images/screenshots/datawallets/collect.png",
-        "/images/screenshots/taxplans/organize.png",
-        "/images/screenshots/datawallets/share.png",
-        "/images/screenshots/datawallets/optimize.png"
+        // "/images/screenshots/datawallets/collect.png",
+        // "/images/screenshots/taxplans/organize.png",
+        // "/images/screenshots/datawallets/share.png",
+        // "/images/screenshots/datawallets/optimize.png",
+        // "/images/screenshots/datawallets/access.png",
+        // "/images/screenshots/datawallets/support.png"
       ]
     },
     network: {
       title: "Advisor Collaboration - Professional Network Growth",
       steps: [
         {
-          title: "Connect",
+          title: "Network",
           description: "Build a private advisor network of planners, brokers, attorneys, and other specialists.",
           icon: <Users size={20} />
         },
         {
           title: "Share",
-          description: "Enable secure, compliant data exchange across industries and platforms.",
+          description: "with prior client's permission, grant controlled access to other servcice providers, advisors, and planners.",
           icon: <DatabaseZap size={20} />
         },
         {
@@ -604,21 +644,25 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
           >
             Streamline your workflow with our intelligent platform
           </p>
-
-       <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="animate-bounce">
-              <ChevronDown size={30} className={isDark ? "text-purple-400" : "text-purple-600"} />
-            </div>
-            <p
-              className={`text-base md:text-lg font-medium ${
-                isDark ? "text-purple-400" : "text-purple-600"
-              }`}
-            >
-              Click any card to see detailed workflow breakdown
+  <div className="flex items-center justify-center gap-3 mb-8 ">
+            <ChevronDown className={`w-8 h-8 animate-bounce ${
+              isDark ? "text-cyan-400" : "text-purple-600"
+            }`} />
+            <p className={`text-lg font-medium   ${
+              isDark 
+                ? "text-cyan-300" 
+                : "text-purple-600"
+            }`}>
+                Click any card to see detailed workflow breakdown
             </p>
-            <div className="animate-bounce" style={{ animationDelay: '0.5s' }}>
-              <ChevronDown size={30} className={isDark ? "text-purple-400" : "text-purple-600"} />
-            </div>
+               <ChevronDown className={`w-8 h-8 animate-bounce delay-0.5s ${
+              isDark ? "text-cyan-400" : "text-purple-600"
+            }`} />
+            <p className={`text-lg font-medium ${
+              isDark 
+                ? "text-cyan-300" 
+                : "text-purple-600"
+            }`}></p>
           </div>
         </div>
 
@@ -639,6 +683,62 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
             </div>
           ))}
         </div>
+        {/* Currently showing indicator - add this after the instruction text and before the Steps Grid */}
+{selectedStep && (
+  <div className="flex justify-center items-center gap-4 mb-8">
+    {/* Left arrow */}
+    <div className="flex items-center gap-2 ">
+      <ChevronUp className={`w-8 h-8 rotate-180 animate-bounce ${
+        isDark ? "text-cyan-400" : "text-purple-600"
+      }`} />
+      <span className={`text-sm font-medium ${
+        isDark ? "text-cyan-400" : "text-purple-600"
+      }`}>
+        Switch Step
+      </span>
+    </div>
+
+    {/* Current step indicator */}
+    <div className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-500 relative overflow-hidden ${
+      isDark 
+        ? "bg-slate-800/90 border border-slate-600/60 shadow-xl" 
+        : "bg-white/95 border border-purple-200/80 shadow-xl"
+    }`}>
+      {/* Animated background */}
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-800 opacity-20"></div>
+      
+      <span className="relative flex items-center gap-3">
+        <div className={`w-2 h-2 rounded-full animate-pulse ${
+          isDark ? "bg-cyan-400" : "bg-purple-500"
+        }`}></div>
+        <span className={`font-semibold ${
+          isDark ? "text-white" : "text-gray-800"
+        }`}>
+          Currently Showing:
+        </span>
+        <span className={`font-bold ${
+          isDark 
+            ? "text-cyan-300" 
+            : "bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
+        }`}>
+          {steps.find(step => step.key === selectedStep)?.title}
+        </span>
+      </span>
+    </div>
+
+    {/* Right arrow */}
+    <div className="flex items-center gap-2 ">
+        <span className={`text-sm font-medium ${
+        isDark ? "text-cyan-400" : "text-purple-600"
+      }`}>
+        Switch Step
+      </span>
+      <ChevronUp className={`w-8 h-8 animate-bounce ${
+        isDark ? "text-cyan-400" : "text-purple-600"
+      }`} />
+    </div>
+  </div>
+)}
 
         {/* Detail Section with ref for scrolling */}
         <div ref={detailSectionRef}>

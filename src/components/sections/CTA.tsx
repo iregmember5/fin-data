@@ -15,7 +15,7 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
     useCases: [] as string[],
     priorityReason: "",
     comments: "",
-    agreeToPromotions: false,
+    agreeToPromotions: true,
     appointmentDate: "",
     appointmentTime: "",
     reminder24h: true,
@@ -30,18 +30,17 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
   // Your Google Apps Script URL
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwknL4h5troWlq8WIUVqCE9M96z_M1I3T6aqSE5UJ0ioPC3Yneu47ThWZUuix7eDcFSbg/exec";
   
-  // Generate time slots (9 AM to 5 PM in 30-minute increments)
-  const generateTimeSlots = () => {
-    const times = [];
-    for (let hour = 9; hour < 17; hour++) {
-      for (let minute = 0; minute < 60; minute += 30) {
-        const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-        times.push(timeString);
-      }
+ // Generate time slots (9 AM to 8 PM in 30-minute increments)
+const generateTimeSlots = () => {
+  const times = [];
+  for (let hour = 9; hour <= 20; hour++) { // Changed from < 17 to <= 20 (8 PM is 20:00)
+    for (let minute = 0; minute < 60; minute += 30) {
+      const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+      times.push(timeString);
     }
-    return times;
-  };
-
+  }
+  return times;
+};
   const timeSlots = generateTimeSlots();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -96,7 +95,7 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
       useCases: [],
       priorityReason: "",
       comments: "",
-      agreeToPromotions: false,
+      agreeToPromotions: true,
       appointmentDate: "",
       appointmentTime: "",
       reminder24h: true,
@@ -171,24 +170,25 @@ const handleSubmit = async (e: React.FormEvent) => {
   ];
 
   // Generate dates for the next 2 weeks (excluding weekends)
-  const generateDates = () => {
-    const dates = [];
-    const today = new Date();
-    for (let i = 1; i <= 14; i++) {
-      const date = new Date();
-      date.setDate(today.getDate() + i);
-      // Skip weekends
-      if (date.getDay() !== 0 && date.getDay() !== 6) {
-        dates.push(date.toISOString().split('T')[0]);
-      }
-    }
-    return dates;
-  };
+// Generate dates for the next 2 weeks (including all days)
+const generateDates = () => {
+  const dates = [];
+  const today = new Date();
+  for (let i = 1; i <= 14; i++) {
+    const date = new Date();
+    date.setDate(today.getDate() + i);
+    // Remove the weekend exclusion - include all days
+    dates.push(date.toISOString().split('T')[0]);
+  }
+  return dates;
+};
 
   const availableDates = generateDates();
 
   return (
     <>
+
+
       <section
         id={id}
         className={`relative py-16 md:py-20 overflow-hidden ${
@@ -255,15 +255,15 @@ const handleSubmit = async (e: React.FormEvent) => {
             <div className={`p-6 rounded-2xl shadow-lg ${isDark ? "bg-gray-800" : "bg-white"}`}>
               <h3 className={`text-xl font-bold mb-4 flex items-center gap-2 ${isDark ? "text-white" : "text-gray-800"}`}>
                 <Calendar className="text-purple-500" size={24} />
-                Schedule a Demo
+                Schedule a Meeting
               </h3>
               <p className={`text-sm mb-4 ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-                Select a date and time for a personalized demo
+                Select a date and time for a personalized Meeting
               </p>
               
               {/* Calendar Date Picker */}
               <div className="mb-4">
-                <h4 className={`font-medium mb-3 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>Available Dates (Weekdays Only)</h4>
+                <h4 className={`font-medium mb-3 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>Available Dates (All Days)</h4>
                 <div className="grid grid-cols-3 gap-2 max-h-50 overflow-y-auto">
                   {availableDates.map(date => (
                     <button
@@ -327,11 +327,11 @@ const handleSubmit = async (e: React.FormEvent) => {
                 }`}
               >
                 <Calendar size={16} />
-                Schedule Demo
+                Schedule Meeting
               </button>
               
               <p className={`text-xs mt-3 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                All appointments are 45 minutes and include a live demo + Q&A
+                All appointments are 45 minutes and include a live Meeting + Q&A
               </p>
             </div>
           </div>
@@ -569,7 +569,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   {/* Schedule Appointment */}
                   <div>
                     <label className={`block text-sm font-medium mb-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                      Schedule a Demo (Optional)
+                      Schedule a Meeting (Optional)
                     </label>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
@@ -622,7 +622,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       <div className={`mt-4 p-4 rounded-lg border ${
                         isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
                       }`}>
-                        <h4 className="font-medium mb-3">Select a Date (Weekdays Only)</h4>
+                        <h4 className="font-medium mb-3">Select a Date (All Days)</h4>
                         <div className="grid grid-cols-3 gap-2">
                           {availableDates.map(date => (
                             <button
@@ -646,7 +646,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                           ))}
                         </div>
                         <p className={`text-xs mt-2 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                          All appointments are 45 minutes and include a live demo + Q&A
+                          All appointments are 45 minutes and include a live Meeting + Q&A
                         </p>
                       </div>
                     )}
@@ -764,7 +764,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       className="rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                     />
                     <span className={`ml-2 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                      I agree to receive promotional content via emails and SMS (extra charges by your email and SMS providers may apply).
+                      I agree to receive promotional content via emails, SMS and Social Media (extra charges by your email and SMS providers may apply).
                     </span>
                   </div>
 
@@ -786,7 +786,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     ) : (
                       <>
                         <Send size={18} />
-                        {formData.appointmentDate ? "Submit & Schedule Demo" : "Request Early Access"}
+                        {formData.appointmentDate ? "Submit & Schedule Meeting" : "Request Early Access"}
                       </>
                     )}
                   </button>

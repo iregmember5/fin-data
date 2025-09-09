@@ -42,7 +42,15 @@ const cardData = [
     pointA: "Throughout the year, offer tax plan implementation and compliance services.",
     pointB: "During tax season, use AI to gather and organize tax files, perform automated data entry, and ensure seamless delivery.",
     pointC: "Help your clients cut costs by maintaining data wallets on an ongoing basis."
-  }
+  },
+  {
+    id: 4,
+    icon: <Users size={20} className="text-white" />,
+    heading: "Tax Pros: Earn Back Diminishing Trust by Going Beyond the Call of Duty",
+    pointA: "By becoming our Affiliate partner reduce our platform fees to zero",
+    pointB: "Earn additional income through our affiliate program",
+    pointC: "Enhance client trust by providing exceptional service beyond traditional tax preparation"
+}
 ];
 
 const Hero: React.FC<HeroProps> = ({ isDark, id }) => {
@@ -171,22 +179,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, id }) => {
     </div>
   </motion.div>
 
-<motion.div 
-  className={`p-6 rounded-2xl mb-8 ${isDark ? "bg-gradient-to-r from-purple-900/50 to-blue-900/50 border border-purple-500/30" : "bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200"} shadow-lg`}
-  initial={{ opacity: 0, scale: 0.95 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.5, delay: 0.35 }}
->
-  <div className="flex items-start">
-    <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-full mr-4">
-      <Users size={20} className="text-white" />
-    </div>
-    <div>
-      <h3 className="text-xl font-bold text-purple-700 dark:text-purple-300 mb-2">Tax Pros: Earn Back Diminishing Trust by Going Beyond the Call of Duty</h3>
-      <p className="text-gray-700 dark:text-gray-300">By becoming our <span className="font-bold text-purple-600 dark:text-purple-400">Affiliate partner</span> reduce our platform fees to a zero.... Plus <span className="font-bold text-blue-600 dark:text-blue-400">earn a lot more</span>....</p>
-    </div>
-  </div>
-</motion.div>
+
 
   {/* CTA Button */}
   <motion.div
