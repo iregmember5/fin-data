@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { X, Send, Calendar, User, Mail, Phone, Globe, MessageSquare, Check, AlertCircle, Clock, Bell } from "lucide-react";
+import { X, Send, Calendar, User, Mail, Phone, Globe, MessageSquare, Check, AlertCircle, Clock, Bell, Crown } from "lucide-react";
 
-const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
+const CTA: React.FC<{ isDark: boolean, id?: string }> = ({ isDark, id }) => {
   const [showModal, setShowModal] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
@@ -29,18 +29,18 @@ const CTA: React.FC<{isDark: boolean, id?: string }> = ({isDark, id }) => {
 
   // Your Google Apps Script URL
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwknL4h5troWlq8WIUVqCE9M96z_M1I3T6aqSE5UJ0ioPC3Yneu47ThWZUuix7eDcFSbg/exec";
-  
- // Generate time slots (9 AM to 8 PM in 30-minute increments)
-const generateTimeSlots = () => {
-  const times = [];
-  for (let hour = 9; hour <= 20; hour++) { // Changed from < 17 to <= 20 (8 PM is 20:00)
-    for (let minute = 0; minute < 60; minute += 30) {
-      const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-      times.push(timeString);
+
+  // Generate time slots (9 AM to 8 PM in 30-minute increments)
+  const generateTimeSlots = () => {
+    const times = [];
+    for (let hour = 11; hour <= 20; hour++) { // Changed from < 17 to <= 20 (8 PM is 20:00)
+      for (let minute = 0; minute < 60; minute += 30) {
+        const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+        times.push(timeString);
+      }
     }
-  }
-  return times;
-};
+    return times;
+  };
   const timeSlots = generateTimeSlots();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -107,41 +107,41 @@ const generateTimeSlots = () => {
     setSelectedTime("");
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsLoading(true);
-  setError("");
-  
-  try {
-    // Prepare form data for Google Sheets
-    const formDataForSheets = new URLSearchParams();
-    formDataForSheets.append("name", formData.name);
-    formDataForSheets.append("email", formData.email);
-    formDataForSheets.append("phone", formData.phone);
-    formDataForSheets.append("profiles", formData.profiles);
-    formDataForSheets.append("useCases", formData.useCases.join(", "));
-    formDataForSheets.append("priorityReason", formData.priorityReason);
-    formDataForSheets.append("comments", formData.comments);
-    formDataForSheets.append("agreeToPromotions", formData.agreeToPromotions ? "Yes" : "No");
-    formDataForSheets.append("reminder24h", formData.reminder24h ? "Yes" : "No");
-    formDataForSheets.append("reminder1h", formData.reminder1h ? "Yes" : "No");
-    formDataForSheets.append("reminder30m", formData.reminder30m ? "Yes" : "No");
-    formDataForSheets.append("reminder10m", formData.reminder10m ? "Yes" : "No");
-    
-    // Add appointment data if selected
-    if (formData.appointmentDate && formData.appointmentTime) {
-      formDataForSheets.append("appointmentDate", formData.appointmentDate);
-      formDataForSheets.append("appointmentTime", formData.appointmentTime);
-    }
-    
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: formDataForSheets.toString()
-    });
-      
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+
+    try {
+      // Prepare form data for Google Sheets
+      const formDataForSheets = new URLSearchParams();
+      formDataForSheets.append("name", formData.name);
+      formDataForSheets.append("email", formData.email);
+      formDataForSheets.append("phone", formData.phone);
+      formDataForSheets.append("profiles", formData.profiles);
+      formDataForSheets.append("useCases", formData.useCases.join(", "));
+      formDataForSheets.append("priorityReason", formData.priorityReason);
+      formDataForSheets.append("comments", formData.comments);
+      formDataForSheets.append("agreeToPromotions", formData.agreeToPromotions ? "Yes" : "No");
+      formDataForSheets.append("reminder24h", formData.reminder24h ? "Yes" : "No");
+      formDataForSheets.append("reminder1h", formData.reminder1h ? "Yes" : "No");
+      formDataForSheets.append("reminder30m", formData.reminder30m ? "Yes" : "No");
+      formDataForSheets.append("reminder10m", formData.reminder10m ? "Yes" : "No");
+
+      // Add appointment data if selected
+      if (formData.appointmentDate && formData.appointmentTime) {
+        formDataForSheets.append("appointmentDate", formData.appointmentDate);
+        formDataForSheets.append("appointmentTime", formData.appointmentTime);
+      }
+
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formDataForSheets.toString()
+      });
+
       if (response.ok) {
         const result = await response.json();
         if (result.result === 'success') {
@@ -170,18 +170,18 @@ const handleSubmit = async (e: React.FormEvent) => {
   ];
 
   // Generate dates for the next 2 weeks (excluding weekends)
-// Generate dates for the next 2 weeks (including all days)
-const generateDates = () => {
-  const dates = [];
-  const today = new Date();
-  for (let i = 1; i <= 14; i++) {
-    const date = new Date();
-    date.setDate(today.getDate() + i);
-    // Remove the weekend exclusion - include all days
-    dates.push(date.toISOString().split('T')[0]);
-  }
-  return dates;
-};
+  // Generate dates for the next 2 weeks (including all days)
+  const generateDates = () => {
+    const dates = [];
+    const today = new Date();
+    for (let i = 1; i <= 14; i++) {
+      const date = new Date();
+      date.setDate(today.getDate() + i);
+      // Remove the weekend exclusion - include all days
+      dates.push(date.toISOString().split('T')[0]);
+    }
+    return dates;
+  };
 
   const availableDates = generateDates();
 
@@ -191,60 +191,71 @@ const generateDates = () => {
 
       <section
         id={id}
-        className={`relative py-16 md:py-20 overflow-hidden ${
-          isDark ? "bg-[#0b0b12]" : "bg-gradient-to-br from-blue-50 to-purple-50"
-        }`}
+        className={`relative py-16 md:py-20 overflow-hidden ${isDark ? "bg-[#0b0b12]" : "bg-gradient-to-br from-blue-50 to-purple-50"
+          }`}
       >
         {/* Floating Gradient Orb */}
-        <div className={`absolute -top-24 left-1/2 -translate-x-1/2 w-[400px] h-[400px] rounded-full blur-[120px] animate-pulse ${
-          isDark 
-            ? "bg-gradient-to-r from-purple-500/40 via-cyan-400/30 to-purple-600/40" 
+        <div className={`absolute -top-24 left-1/2 -translate-x-1/2 w-[400px] h-[400px] rounded-full blur-[120px] animate-pulse ${isDark
+            ? "bg-gradient-to-r from-purple-500/40 via-cyan-400/30 to-purple-600/40"
             : "bg-gradient-to-r from-purple-300/30 via-cyan-300/20 to-purple-400/30"
-        }`} />
+          }`} />
+        <div className="flex items-center justify-center mb-8">
+          <div className="bg-amber-100 dark:bg-amber-900/30 p-2 rounded-full mr-4 mt-1">
+            <Crown size={24} className="text-amber-600 dark:text-amber-400" />
+          </div>
+
+          <p className={`text-2xl font-bold ${isDark ? "text-purple-400" : "text-purple-600"}`}>
+            We find ways for you to be the{" "}
+            <span className={isDark ? "text-cyan-500" : "text-cyan-700"}>
+              hero of the game being orchestrated
+            </span>
+            .
+          </p>
+        </div>
+
+
 
         <div className="relative max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
           {/* Left side with content */}
           <div className="w-full md:w-3/5 text-center md:text-left">
             {/* Headline */}
-            <h2 className={`text-3xl md:text-4xl font-bold leading-tight mb-4 ${
-              isDark ? "text-white" : "text-gray-800"
-            }`}>
-              The Future of Tax Workflow —
-              <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${
-                isDark 
-                  ? "from-cyan-400 to-purple-400" 
-                  : "from-cyan-600 to-purple-600"
+            <h2 className={`text-3xl md:text-4xl font-bold leading-tight mb-4 ${isDark ? "text-white" : "text-gray-800"
               }`}>
+              The Future of Tax Workflow —
+              <span className={`font-semibold bg-gradient-to-r bg-clip-text text-transparent ${isDark
+                  ? "from-cyan-400 to-purple-400"
+                  : "from-cyan-600 to-purple-600"
+                }`}>
                 powered by AI
               </span>
             </h2>
 
             {/* Subtext */}
-            <p className={`text-base md:text-lg max-w-2xl mx-auto md:mx-0 mb-8 ${
-              isDark ? "text-gray-300" : "text-gray-600"
-            }`}>
+            <p className={`text-base md:text-lg max-w-2xl mx-auto md:mx-0 mb-8 ${isDark ? "text-gray-300" : "text-gray-600"
+              }`}>
               From intake to delivery, myfindata eliminates tedious tasks while
               keeping your client data safe with industry-leading security.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center">
-              <button 
+              <button
                 onClick={() => setShowModal(true)}
-                className={`font-bold py-3 px-6 rounded-lg shadow-md transition flex items-center justify-center gap-2 ${
-                  isDark
+                className={`font-bold py-3 px-6 rounded-lg shadow-md transition flex items-center justify-center gap-2 ${isDark
                     ? "bg-purple-600 hover:bg-purple-700 text-white"
                     : "bg-purple-600 hover:bg-purple-700 text-white"
-                }`}
+                  }`}
               >
                 <Calendar size={18} />
                 Apply For Early Access
               </button>
-              <button className={`font-bold py-3 px-6 border rounded-lg transition ${
-                isDark
+              <button 
+              onClick={() => setShowModal(true)}
+              className={`font-bold py-3 px-6 border rounded-lg transition ${isDark
                   ? "bg-transparent hover:bg-gray-700 text-white border-white/40"
                   : "bg-transparent hover:bg-purple-100 text-purple-700 border-purple-400/60"
-              }`}>
+                }`}>
+                  
                 Talk to Us
               </button>
             </div>
@@ -260,7 +271,7 @@ const generateDates = () => {
               <p className={`text-sm mb-4 ${isDark ? "text-gray-300" : "text-gray-600"}`}>
                 Select a date and time for a personalized Meeting
               </p>
-              
+
               {/* Calendar Date Picker */}
               <div className="mb-4">
                 <h4 className={`font-medium mb-3 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>Available Dates (All Days)</h4>
@@ -273,24 +284,23 @@ const generateDates = () => {
                         handleDateSelect(date);
                         setShowModal(true);
                       }}
-                      className={`py-2 px-3 rounded text-sm transition ${
-                        selectedDate === date
+                      className={`py-2 px-3 rounded text-sm transition ${selectedDate === date
                           ? "bg-purple-600 text-white"
                           : isDark
                             ? "bg-gray-700 hover:bg-gray-600 text-white"
                             : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                      }`}
+                        }`}
                     >
-                      {new Date(date).toLocaleDateString('en-US', { 
+                      {new Date(date).toLocaleDateString('en-US', {
                         weekday: 'short',
-                        month: 'short', 
-                        day: 'numeric' 
+                        month: 'short',
+                        day: 'numeric'
                       })}
                     </button>
                   ))}
                 </div>
               </div>
-              
+
               {/* Time Slot Selector */}
               {selectedDate && (
                 <div className="mb-4">
@@ -298,11 +308,10 @@ const generateDates = () => {
                   <select
                     value={formData.appointmentTime}
                     onChange={(e) => handleTimeSelect(e.target.value)}
-                    className={`w-full py-2 px-3 rounded-lg border text-sm ${
-                      isDark 
-                        ? "bg-gray-700 border-gray-600 text-white" 
+                    className={`w-full py-2 px-3 rounded-lg border text-sm ${isDark
+                        ? "bg-gray-700 border-gray-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
-                    }`}
+                      }`}
                   >
                     <option value="">Select a time</option>
                     {timeSlots.map(time => (
@@ -317,19 +326,18 @@ const generateDates = () => {
                   </select>
                 </div>
               )}
-              
-              <button 
+
+              <button
                 onClick={() => setShowModal(true)}
-                className={`w-full py-2 px-4 rounded-lg font-medium flex items-center justify-center gap-2 ${
-                  isDark
+                className={`w-full py-2 px-4 rounded-lg font-medium flex items-center justify-center gap-2 ${isDark
                     ? "bg-purple-600 hover:bg-purple-700 text-white"
                     : "bg-purple-600 hover:bg-purple-700 text-white"
-                }`}
+                  }`}
               >
                 <Calendar size={16} />
                 Schedule Meeting
               </button>
-              
+
               <p className={`text-xs mt-3 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
                 All appointments are 45 minutes and include a live Meeting + Q&A
               </p>
@@ -341,15 +349,13 @@ const generateDates = () => {
       {/* Application Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className={`relative max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl ${
-            isDark ? "bg-gray-900 text-white" : "bg-white text-gray-800"
-          }`}>
+          <div className={`relative max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl ${isDark ? "bg-gray-900 text-white" : "bg-white text-gray-800"
+            }`}>
             {/* Close Button */}
-            <button 
+            <button
               onClick={handleCloseModal}
-              className={`absolute top-4 right-4 rounded-full p-2 z-10 ${
-                isDark ? "hover:bg-gray-800" : "hover:bg-gray-100"
-              }`}
+              className={`absolute top-4 right-4 rounded-full p-2 z-10 ${isDark ? "hover:bg-gray-800" : "hover:bg-gray-100"
+                }`}
             >
               <X size={24} />
             </button>
@@ -361,7 +367,7 @@ const generateDates = () => {
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Application Submitted!</h3>
                 <p className="mb-6">Thank you for your interest. We'll be in touch soon with your early access details.</p>
-                
+
                 {formData.appointmentDate && (
                   <div className={`p-4 rounded-lg mb-6 ${isDark ? "bg-gray-800" : "bg-blue-50"}`}>
                     <h4 className="font-semibold mb-2 flex items-center justify-center gap-2">
@@ -377,9 +383,8 @@ const generateDates = () => {
                 )}
 
                 {/* MyPowerly Account Option */}
-                <div className={`p-4 rounded-lg mb-6 border-2 border-dashed ${
-                  isDark ? "bg-gray-800 border-gray-600" : "bg-purple-50 border-purple-300"
-                }`}>
+                <div className={`p-4 rounded-lg mb-6 border-2 border-dashed ${isDark ? "bg-gray-800 border-gray-600" : "bg-purple-50 border-purple-300"
+                  }`}>
                   <p className="mb-4 text-sm">
                     Would you like to create an account on MyPowerly.com?
                   </p>
@@ -392,11 +397,10 @@ const generateDates = () => {
                     </button>
                     <button
                       onClick={handleCloseModal}
-                      className={`px-6 py-2 rounded-lg font-medium transition ${
-                        isDark 
-                          ? "bg-gray-700 hover:bg-gray-600 text-white" 
+                      className={`px-6 py-2 rounded-lg font-medium transition ${isDark
+                          ? "bg-gray-700 hover:bg-gray-600 text-white"
                           : "bg-gray-200 hover:bg-gray-300 text-gray-700"
-                      }`}
+                        }`}
                     >
                       No, Thanks
                     </button>
@@ -411,14 +415,13 @@ const generateDates = () => {
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-2">Early Access Application</h2>
                   <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-                    Join the exclusive group of tax professionals testing MyFinData
+                   Myfindata is not ready yet. Apply to request early access and participate in our pilot beta testing. (First 100 Early adopters get special offers that earn  discounts to make our platform fees to Zero)
                   </p>
                 </div>
 
                 {error && (
-                  <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
-                    isDark ? "bg-red-900/30 border border-red-700" : "bg-red-100 border border-red-200"
-                  }`}>
+                  <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${isDark ? "bg-red-900/30 border border-red-700" : "bg-red-100 border border-red-200"
+                    }`}>
                     <AlertCircle className="text-red-500 flex-shrink-0" size={20} />
                     <p className="text-sm">{error}</p>
                   </div>
@@ -440,11 +443,10 @@ const generateDates = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${
-                          isDark 
-                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500" 
+                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${isDark
+                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500"
                             : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
-                        }`}
+                          }`}
                         placeholder="John Smith"
                       />
                     </div>
@@ -465,11 +467,10 @@ const generateDates = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${
-                          isDark 
-                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500" 
+                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${isDark
+                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500"
                             : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
-                        }`}
+                          }`}
                         placeholder="john@example.com"
                       />
                     </div>
@@ -490,11 +491,10 @@ const generateDates = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${
-                          isDark 
-                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500" 
+                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${isDark
+                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500"
                             : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
-                        }`}
+                          }`}
                         placeholder="(123) 456-7890"
                       />
                     </div>
@@ -514,11 +514,10 @@ const generateDates = () => {
                         name="profiles"
                         value={formData.profiles}
                         onChange={handleInputChange}
-                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${
-                          isDark 
-                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500" 
+                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${isDark
+                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500"
                             : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
-                        }`}
+                          }`}
                         placeholder="Please Provide link to your website and social media profiles"
                       />
                     </div>
@@ -557,11 +556,10 @@ const generateDates = () => {
                       value={formData.priorityReason}
                       onChange={handleInputChange}
                       rows={3}
-                      className={`block w-full px-3 py-3 rounded-lg border ${
-                        isDark 
-                          ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500" 
+                      className={`block w-full px-3 py-3 rounded-lg border ${isDark
+                          ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500"
                           : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
-                      }`}
+                        }`}
                       placeholder="Tell us about your practice, current pain points, or why you need early access..."
                     />
                   </div>
@@ -576,16 +574,15 @@ const generateDates = () => {
                         <button
                           type="button"
                           onClick={() => setShowCalendar(!showCalendar)}
-                          className={`w-full py-3 px-4 rounded-lg border flex items-center justify-center gap-2 ${
-                            selectedDate
+                          className={`w-full py-3 px-4 rounded-lg border flex items-center justify-center gap-2 ${selectedDate
                               ? "bg-purple-100 border-purple-300 text-purple-700"
-                              : isDark 
-                                ? "bg-gray-800 border-gray-700 hover:bg-gray-700 text-white" 
+                              : isDark
+                                ? "bg-gray-800 border-gray-700 hover:bg-gray-700 text-white"
                                 : "bg-white border-gray-300 hover:bg-gray-50 text-gray-700"
-                          }`}
+                            }`}
                         >
                           <Calendar size={16} />
-                          {selectedDate 
+                          {selectedDate
                             ? new Date(selectedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
                             : "Select Date"
                           }
@@ -596,11 +593,10 @@ const generateDates = () => {
                           name="appointmentTime"
                           value={formData.appointmentTime}
                           onChange={(e) => handleTimeSelect(e.target.value)}
-                          className={`w-full py-3 px-4 rounded-lg border ${
-                            isDark 
-                              ? "bg-gray-800 border-gray-700 text-white" 
+                          className={`w-full py-3 px-4 rounded-lg border ${isDark
+                              ? "bg-gray-800 border-gray-700 text-white"
                               : "bg-white border-gray-300 text-gray-900"
-                          }`}
+                            }`}
                           disabled={!selectedDate}
                         >
                           <option value="">Select Time</option>
@@ -619,9 +615,8 @@ const generateDates = () => {
 
                     {/* Calendar Date Picker */}
                     {showCalendar && (
-                      <div className={`mt-4 p-4 rounded-lg border ${
-                        isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
-                      }`}>
+                      <div className={`mt-4 p-4 rounded-lg border ${isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
+                        }`}>
                         <h4 className="font-medium mb-3">Select a Date (All Days)</h4>
                         <div className="grid grid-cols-3 gap-2">
                           {availableDates.map(date => (
@@ -629,18 +624,17 @@ const generateDates = () => {
                               key={date}
                               type="button"
                               onClick={() => handleDateSelect(date)}
-                              className={`py-2 px-3 rounded text-sm transition ${
-                                selectedDate === date
+                              className={`py-2 px-3 rounded text-sm transition ${selectedDate === date
                                   ? "bg-purple-600 text-white"
                                   : isDark
                                     ? "bg-gray-700 hover:bg-gray-600 text-white"
                                     : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                              }`}
+                                }`}
                             >
-                              {new Date(date).toLocaleDateString('en-US', { 
+                              {new Date(date).toLocaleDateString('en-US', {
                                 weekday: 'short',
-                                month: 'short', 
-                                day: 'numeric' 
+                                month: 'short',
+                                day: 'numeric'
                               })}
                             </button>
                           ))}
@@ -670,11 +664,10 @@ const generateDates = () => {
                                 onChange={() => handleReminderToggle('reminder24h')}
                                 className="sr-only peer"
                               />
-                              <div className={`w-11 h-6 rounded-full peer ${
-                                formData.reminder24h 
-                                  ? "bg-purple-600" 
+                              <div className={`w-11 h-6 rounded-full peer ${formData.reminder24h
+                                  ? "bg-purple-600"
                                   : "bg-gray-300"
-                              } peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}></div>
+                                } peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}></div>
                             </label>
                           </div>
                           <div className="flex items-center justify-between">
@@ -686,11 +679,10 @@ const generateDates = () => {
                                 onChange={() => handleReminderToggle('reminder1h')}
                                 className="sr-only peer"
                               />
-                              <div className={`w-11 h-6 rounded-full peer ${
-                                formData.reminder1h 
-                                  ? "bg-purple-600" 
+                              <div className={`w-11 h-6 rounded-full peer ${formData.reminder1h
+                                  ? "bg-purple-600"
                                   : "bg-gray-300"
-                              } peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}></div>
+                                } peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}></div>
                             </label>
                           </div>
                           <div className="flex items-center justify-between">
@@ -702,11 +694,10 @@ const generateDates = () => {
                                 onChange={() => handleReminderToggle('reminder30m')}
                                 className="sr-only peer"
                               />
-                              <div className={`w-11 h-6 rounded-full peer ${
-                                formData.reminder30m 
-                                  ? "bg-purple-600" 
+                              <div className={`w-11 h-6 rounded-full peer ${formData.reminder30m
+                                  ? "bg-purple-600"
                                   : "bg-gray-300"
-                              } peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}></div>
+                                } peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}></div>
                             </label>
                           </div>
                           <div className="flex items-center justify-between">
@@ -718,11 +709,10 @@ const generateDates = () => {
                                 onChange={() => handleReminderToggle('reminder10m')}
                                 className="sr-only peer"
                               />
-                              <div className={`w-11 h-6 rounded-full peer ${
-                                formData.reminder10m 
-                                  ? "bg-purple-600" 
+                              <div className={`w-11 h-6 rounded-full peer ${formData.reminder10m
+                                  ? "bg-purple-600"
                                   : "bg-gray-300"
-                              } peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}></div>
+                                } peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all`}></div>
                             </label>
                           </div>
                         </div>
@@ -744,11 +734,10 @@ const generateDates = () => {
                         value={formData.comments}
                         onChange={handleInputChange}
                         rows={3}
-                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${
-                          isDark 
-                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500" 
+                        className={`block w-full pl-10 pr-3 py-3 rounded-lg border ${isDark
+                            ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500"
                             : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
-                        }`}
+                          }`}
                         placeholder="Share any suggestions or comments you have"
                       />
                     </div>
@@ -772,11 +761,10 @@ const generateDates = () => {
                   <button
                     type="submit"
                     disabled={!formData.name || !formData.email || !formData.phone || isLoading}
-                    className={`w-full py-3 px-6 rounded-lg font-bold flex items-center justify-center gap-2 mt-6 ${
-                      (!formData.name || !formData.email || !formData.phone || isLoading)
+                    className={`w-full py-3 px-6 rounded-lg font-bold flex items-center justify-center gap-2 mt-6 ${(!formData.name || !formData.email || !formData.phone || isLoading)
                         ? "bg-gray-400 text-gray-700 cursor-not-allowed"
                         : "bg-purple-600 hover:bg-purple-700 text-white"
-                    }`}
+                      }`}
                   >
                     {isLoading ? (
                       <>

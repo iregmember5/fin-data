@@ -61,6 +61,32 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
       gradient: "from-cyan-400 via-blue-500 to-indigo-600",
       glowColor: "cyan",
     },
+      Prep: {
+      label: "Prep",
+      title: "Smarter Accuracy & Seamless Reviews",
+      subtitle:
+        "Optimize tax form processing with AI precision and scalable automation.",
+      features: [
+        "AI-powered tax form recognition with one-step review process.",
+        "Automated leadsheets for K-1s & 1099s, no 7216 consent forms.",
+        "Limitless AI scalability with auto data entry across tax software.",
+        "Customizable leadsheets & workflows with one-click export.",
+        "Bank-grade client data security with effortless document tracking.",
+        "Lower review costs with automation & quick, reliable data export.",
+      ],
+      benefit:
+        "➡️ Reduce review time, protect client data, and simplify workflows with end-to-end automation.",
+      question: "Why It Matters",
+      points: [
+        "Faster, more accurate reviews with fewer errors",
+        "Lower costs through automation at scale",
+        "Stronger client trust with bank-grade data security",
+        "Simplifies team workflows so you can process more returns in less time"
+      ],
+      icon: <Database className="w-6 h-6" />,
+      gradient: "from-emerald-400 via-green-500 to-teal-600",
+      glowColor: "emerald",
+    },
     Deliver: {
       label: "Deliver",
       title: "Streamlined Tax Document Delivery with myfindata",
@@ -87,32 +113,7 @@ const IntegratedProducts: React.FC<{isDark: boolean, id?: string }> = ({isDark, 
       gradient: "from-fuchsia-400 via-purple-500 to-violet-600",
       glowColor: "purple",
     },
-    Prep: {
-      label: "Prep",
-      title: "Smarter Accuracy & Seamless Reviews",
-      subtitle:
-        "Optimize tax form processing with AI precision and scalable automation.",
-      features: [
-        "AI-powered tax form recognition with one-step review process.",
-        "Automated leadsheets for K-1s & 1099s, no 7216 consent forms.",
-        "Limitless AI scalability with auto data entry across tax software.",
-        "Customizable leadsheets & workflows with one-click export.",
-        "Bank-grade client data security with effortless document tracking.",
-        "Lower review costs with automation & quick, reliable data export.",
-      ],
-      benefit:
-        "➡️ Reduce review time, protect client data, and simplify workflows with end-to-end automation.",
-      question: "Why It Matters",
-      points: [
-        "Faster, more accurate reviews with fewer errors",
-        "Lower costs through automation at scale",
-        "Stronger client trust with bank-grade data security",
-        "Simplifies team workflows so you can process more returns in less time"
-      ],
-      icon: <Database className="w-6 h-6" />,
-      gradient: "from-emerald-400 via-green-500 to-teal-600",
-      glowColor: "emerald",
-    },
+  
     DataWalletsforFamilyOffice: {
       label: "Data Wallets for Family Office",
       title: "Your clients scattered financial artifacts now Organized and Protected in Secure Data Wallets",

@@ -538,7 +538,7 @@ wallets: {
         },
         {
           title: "Share",
-          description: "with prior client's permission, grant controlled access to other servcice providers, advisors, and planners.",
+          description: "With prior client's permission, grant controlled access to other service providers, advisors and planners.",
           icon: <DatabaseZap size={20} />
         },
         {
@@ -732,7 +732,7 @@ wallets: {
           <span className={`font-semibold text-center ${
             isDark ? "text-white" : "text-gray-800"
           }`}>
-            Currently Showing
+               Currently Showing:
           </span>
         </div>
         

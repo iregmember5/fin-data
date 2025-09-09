@@ -130,7 +130,22 @@ const Hero: React.FC<HeroProps> = ({ isDark, id }) => {
   >
     Tax Pros: <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">Reclaim Your Precious Time</span> & Win More Loyal Customers
   </motion.h1>
-  
+
+  <motion.p
+    className="text-lg md:text-xl mb-8"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.3 }}
+  >
+Take a deep sigh of relief!  <br />
+
+Days of laborious manual data entry, gathering and delivery of tax documents are numbered....<br />
+
+"The painful back-and-forth with demanding clients is finally stopping."<br />
+
+"No more clients endlessly hogging time."
+  </motion.p>
+
   {/* Subheadline */}
   <motion.div 
     className="mb-8 space-y-4 text-lg md:text-xl text-gray-700 dark:text-gray-300"
@@ -150,13 +165,6 @@ const Hero: React.FC<HeroProps> = ({ isDark, id }) => {
         <Repeat size={18} className="text-blue-600 dark:text-blue-400" />
       </div>
       <p>We create reasons for your clients to come back over and over again throughout the year.</p>
-    </div>
-    
-    <div className="flex items-start">
-      <div className="bg-amber-100 dark:bg-amber-900/30 p-2 rounded-full mr-4 mt-1">
-        <Crown size={18} className="text-amber-600 dark:text-amber-400" />
-      </div>
-      <p>We find ways for you to be the hero of the game being orchestrated.</p>
     </div>
   </motion.div>
 

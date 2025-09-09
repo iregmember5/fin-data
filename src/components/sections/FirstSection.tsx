@@ -120,7 +120,10 @@ const FirstSection: React.FC<FirstSectionProps> = ({ isDark, id }) => {
             </span>
             .
           </p>
+
+          
         </div>
+      
       </div>
     </div>
   );
