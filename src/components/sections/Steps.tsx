@@ -486,47 +486,48 @@ const InteractiveProcessSection: React.FC<{ isDark: boolean; id?: string }> = ({
       ]
     },
 wallets: {
-      title: "Data Wallets for Family Office - Complete Financial Ecosystem",
-      steps: [
-        {
-          title: "Collect & Upload",
-          description: "Clients securely upload their financial artifacts — tax returns, K-1s, wills, insurance policies, mortgage papers, investment records, and more. AI auto-sorts and tags documents for easy organization.",
-          icon: <Upload size={20} />
-        },
-        {
-          title: "Organize & Protect",
-          description: "The system creates a centralized, encrypted wallet where every document is categorized and safely stored. Role-based permissions ensure only authorized users can access sensitive financial data.",
-          icon: <LockKeyholeOpen size={20} />
-        },
-        {
-          title: "Share with Confidence",
-          description: "Clients can grant pre-authorized access to attorneys, advisors, or family members with time-limited links, view-only or download options, and Full audit trail of who accessed what and when",
-          icon: <Users size={20} />
-        },
-        {
-          title: "Compare & Save",
-          description: "Clients upload current bills (insurance, loans, utilities, etc.). The wallet's smart comparison engine highlights potential savings from alternate vendors and solutions.",
-          icon: <Eye size={20} />
-        },
-        {
-          title: "Access Anytime, Anywhere",
-          description: "From a web dashboard or mobile app, clients and their trusted circle can view & download key documents, track renewals & deadlines, and receive reminders and notifications.",
-          icon: <DatabaseZap size={20} />
-        },
-        {
-          title: "Ongoing Trust & Support",
-          description: "AI-powered search capabilities, live support with transcription & translation, and regular reports showing savings, updates, and security status.",
-        }
-      ],
-      screenshots: [
-        // "/images/screenshots/datawallets/collect.png",
-        // "/images/screenshots/taxplans/organize.png",
-        // "/images/screenshots/datawallets/share.png",
-        // "/images/screenshots/datawallets/optimize.png",
-        // "/images/screenshots/datawallets/access.png",
-        // "/images/screenshots/datawallets/support.png"
-      ]
+  title: "Data Wallets for Family Office - Complete Financial Ecosystem",
+  steps: [
+    {
+      title: "Collect & Upload",
+      description: "Clients securely upload their financial artifacts — tax returns, K-1s, wills, insurance policies, mortgage papers, investment records, and more. AI auto-sorts and tags documents for easy organization.",
+      icon: <Upload size={20} />
     },
+    {
+      title: "Organize & Protect",
+      description: "The system creates a centralized, encrypted wallet where every document is categorized and safely stored. Role-based permissions ensure only authorized users can access sensitive financial data.",
+      icon: <LockKeyholeOpen size={20} />
+    },
+    {
+      title: "Share with Confidence",
+      description: "Clients can grant pre-authorized access to attorneys, advisors, or family members with time-limited links, view-only or download options, and Full audit trail of who accessed what and when",
+      icon: <Users size={20} />
+    },
+    {
+      title: "Compare & Save",
+      description: "Clients upload current bills (insurance, loans, utilities, etc.). The wallet's smart comparison engine highlights potential savings from alternate vendors and solutions.",
+      icon: <Eye size={20} />
+    },
+    {
+      title: "Access Anytime, Anywhere",
+      description: "From a web dashboard or mobile app, clients and their trusted circle can view & download key documents, track renewals & deadlines, and receive reminders and notifications.",
+      icon: <DatabaseZap size={20} />
+    },
+    {
+      title: "Ongoing Trust & Support",
+      description: "AI-powered search capabilities, live support with transcription & translation, and regular reports showing savings, updates, and security status.",
+      icon: <Users size={20} /> // Added icon here
+    }
+  ],
+  screenshots: [
+    "/images/screenshots/datawallets/collect1.png",
+    "/images/screenshots/taxplans/organize1.png",
+    "/images/screenshots/datawallets/share1.png",
+    "/images/screenshots/datawallets/optimize1.png",
+    "/images/screenshots/datawallets/access1.png",
+    "/images/screenshots/datawallets/support1.png"
+  ]
+},
     network: {
       title: "Advisor Collaboration - Professional Network Growth",
       steps: [
